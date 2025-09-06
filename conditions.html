@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Histoire d'Auterive — Conditions d’utilisation</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <span class="site-author">Jean Marc DAVID</span>
+    <h1>Histoire d'Auterive</h1>
+  </header>
+
+  <main>
+    <section class="conditions">
+      <div class="section-card">
+        <h2>Conditions d’utilisation</h2>
+
+        <div class="conditions-text">
+          <p><strong>En accédant à ce site, vous acceptez de respecter les règles suivantes</strong></p>
+
+          <p>Le site « Histoire d’Auterive » met à disposition une base documentaire sur l’histoire locale d’Auterive et conserve la mémoire du territoire.</p>
+
+          <p>Les contenus déposés (témoignages, documents, photographies) restent la propriété de leurs auteurs. L’éditeur décline toute responsabilité quant à l’utilisation faite des informations disponibles sur ce site. Vous vous engagez à respecter la mémoire des personnes et l’intégrité des documents partagés.</p>
+
+          <p>Les informations transmises sont utilisées uniquement dans le cadre du projet, à titre informatif. Malgré le soin apporté à leur vérification, des erreurs peuvent subsister et n’engagent pas la responsabilité de l’éditeur.</p>
+
+          <p>Chaque contenu cite sa source et son auteur ; toute réutilisation doit mentionner ces références. Les images déposées par des tiers restent leur propriété.</p>
+
+          <p>Ces conditions peuvent évoluer à tout moment. Il vous appartient de les consulter régulièrement.</p>
+        </div>
+
+        <div class="cta" style="margin-top:12px;">
+          <div style="display:flex; gap:12px; align-items:center; justify-content:center;">
+            <label><input type="checkbox" id="acceptChk" /> J’accepte</label>
+            <button id="nextBtn" class="btn" type="button" disabled>Suite</button>
+          </div>
+        </div>
+
+        <!-- Lien Contact / Contribuer, en bas à droite, aligné avec le texte -->
+        <div class="conditions-text" style="text-align:right; margin-top:6px;">
+          <a href="contact.html">Contact / Contribuer</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Histoire d'Auterive · <span id="pv-counter">—</span> <span id="pv-badge" title="État du compteur"></span></p>
+  </footer>
+
+  <script>
+    (function(){
+      const chk = document.getElementById('acceptChk');
+      const btn = document.getElementById('nextBtn');
+      chk.addEventListener('change', () => { btn.disabled = !chk.checked; });
+      btn.addEventListener('click', () => { if (!btn.disabled) window.location.href = 'recherche.html'; });
+    })();
+  </script>
+
+  <!-- Compteur de visites (page: conditions) -->
+  <script>
+  (function(){
+    const el = document.getElementById('pv-counter');
+    const badge = document.getElementById('pv-badge');
+    if(!el || !badge) return;
+
+    const NS   = 'histoire-auterive.netlify.app';
+    const KEY  = 'conditions';
+    const LS   = 'pv-'+KEY;
+
+    function show(val, online){
+      el.textContent = (typeof val === 'number') ? val.toLocaleString('fr-FR') : '—';
+      badge.textContent = online ? '[✓]' : '[~]';
+    }
+    function withTimeout(p, ms){
+      return Promise.race([ p, new Promise((_,rej)=>setTimeout(()=>rej(new Error('timeout')), ms)) ]);
+    }
+    function localFallback(){
+      let v = parseInt(localStorage.getItem(LS)||'0',10);
+      v = isNaN(v) ? 1 : v+1;
+      localStorage.setItem(LS, String(v));
+      show(v, false);
+    }
+    const url1 = 'https://api.countapi.xyz/hit/'+encodeURIComponent(NS)+'/'+encodeURIComponent(KEY);
+    withTimeout(fetch(url1, {cache:'no-store'}), 1500)
+      .then(r=>r.json())
+      .then(d=>{
+        if(d && typeof d.value === 'number'){ show(d.value, true); }
+        else throw new Error('no value from countapi');
+      })
+      .catch(()=>{
+        const url2 = 'https://api.counterapi.dev/v1/'+encodeURIComponent(NS)+'/'+encodeURIComponent(KEY)+'/up';
+        return withTimeout(fetch(url2, {cache:'no-store'}), 1500)
+          .then(r=>r.json())
+          .then(d=>{
+            if(d && typeof d.count === 'number'){ show(d.count, true); }
+            else throw new Error('no value from counterapi');
+          })
+          .catch(localFallback);
+      });
+  })();
+  </script>
+</body>
+</html>
+

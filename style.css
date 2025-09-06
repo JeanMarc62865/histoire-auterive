@@ -1,0 +1,293 @@
+/* ================================ 
+   Variables globales
+================================ */
+:root{
+  --font: "Segoe UI", Arial, sans-serif;
+  --bg: #f8f5f0;
+  --text: #2b2b2b;
+  --accent: #2e4057;     /* bleu ardoise */
+  --border: #d6cfc4;
+  --shadow: 0 2px 8px rgba(0,0,0,0.12);
+  --radius: 8px;
+  --card: #ffffff;
+
+  --accent-soft: #6d8b99;
+
+  /* Gabarit */
+  --formw: 1100px;       /* largeur centrale pages 1 et 2 */
+  --control-h: 32px;     /* hauteur des boutons (comme page 3) */
+  --pad-sides: 16px;     /* padding horizontal cartes */
+  --pad-vert:  16px;     /* padding vertical cartes */
+}
+
+/* ================================
+   Style global
+================================ */
+* { box-sizing: border-box; }
+body {
+  font-family: var(--font);
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* ================================
+   Header / Footer
+================================ */
+header {
+  background: var(--accent);
+  color: white;
+  padding: 20px 10px;
+  text-align: center;
+  position: relative; /* permet de placer le nom à gauche */
+}
+header h1 {
+  margin: 0;
+  font-size: 2.2em;
+}
+.site-author {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1em;
+  font-weight: bold;
+  color: white;
+}
+
+footer {
+  text-align: center;
+  background: var(--accent);
+  color: white;
+  padding: 14px;
+  margin-top: 18px;
+  font-size: 14px;
+}
+
+/* ================================
+   Conteneur principal (pages 1 & 2)
+================================ */
+main {
+  padding: 20px;
+  max-width: var(--formw);
+  margin: 0 auto;
+}
+
+/* Cartes de contenu : même padding/marge pour 1 & 2 */
+.section-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--pad-vert) var(--pad-sides);
+  margin: 0 auto 20px auto; /* distance régulière avec le bandeau du bas */
+  max-width: var(--formw);
+}
+
+/* ================================
+   Titres
+================================ */
+h2 {
+  text-align: center;
+  margin-bottom: 18px;
+  color: var(--accent);
+  font-size: 1.7em;
+}
+
+/* ================================
+   Boutons (même rendu/hauteur que page 3)
+================================ */
+.btn {
+  background: linear-gradient(to bottom, #e9edf2, #cfd7df);
+  border: 1px solid #9aa6b2;
+  border-radius: 8px;
+  padding: 0 16px;
+  height: var(--control-h);
+  line-height: calc(var(--control-h) - 2px);
+  font-size: 0.95em;
+  cursor: pointer;
+  color: var(--accent);
+  box-shadow: 0 3px 8px -5px rgba(0,0,0,.3);
+  transition: transform .08s ease, filter .15s ease, box-shadow .2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.btn:hover { filter: brightness(1.07); box-shadow: 0 6px 12px -6px rgba(0,0,0,.3); }
+.btn:active { transform: translateY(1px); }
+.btn:disabled { opacity: .45; filter: grayscale(20%); cursor: not-allowed; box-shadow: none; }
+
+/* Petite note d’aide sous le bouton */
+.helper-note{
+  margin:0;
+  font-size:.95em;
+  color:#556;
+}
+
+/* ================================
+   Compteur (page 3, discret)
+================================ */
+.counter {
+  text-align: center;
+  margin: 12px 0 14px;
+  color: var(--accent-soft);
+  font-size: 0.95em;
+  font-weight: normal;
+}
+
+/* ================================
+   Page 3 : Formulaire & résultats
+================================ */
+.search-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1.2fr;
+  gap: 10px;
+  align-items: end;
+
+  max-width: var(--formw);
+  margin: 0 auto 16px auto;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+
+  padding: 12px 16px;
+}
+.search-form label {
+  font-size: 13.5px;
+  color: var(--accent-soft);
+  margin-bottom: 6px;
+}
+.search-form select,
+.search-form input[type="text"] {
+  width: 100%;
+  height: var(--control-h);
+  padding: 0 10px;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--text);
+  appearance: none;
+  outline: none;
+}
+.search-form select:focus,
+.search-form input[type="text"]:focus {
+  border-color: var(--accent-soft);
+  box-shadow: 0 0 0 3px rgba(79,140,255,.18);
+}
+.search-form .col-min-220 { min-width: 220px; }
+.search-form .col-min-260 { min-width: 260px; }
+
+.actions-raz {
+  max-width: var(--formw);
+  margin: 10px auto 16px auto;
+  text-align: center;
+}
+
+.results-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px;
+  min-height: 50px;
+  max-height: 300px;
+  overflow-y: auto;
+  box-shadow: var(--shadow);
+
+  max-width: var(--formw);
+  margin: 0 auto 20px auto;
+}
+.results-box p {
+  margin: 5px 0;
+  padding: 8px;
+  border-bottom: 1px dashed #e5ebf2;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  border-radius: 6px;
+}
+.results-box p:hover { background: #f3f7fb; }
+.results-box p:last-child { border-bottom: none; }
+
+#diag {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 13px;
+  color: #777;
+}
+
+/* ================================
+   Page 1 (index) & Page 2 (conditions)
+================================ */
+.presentation-inner { /* carte de la page 1 */
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--pad-vert) var(--pad-sides);
+  margin: 0 auto 20px auto;
+  max-width: var(--formw);
+}
+
+.intro-text,
+.conditions-text {
+  max-width: var(--formw);
+  margin: 0 auto;
+  text-align: justify;
+}
+.intro-text p,
+.conditions-text p { margin: .6em 0; }
+
+/* Encadré flottant type Word pour la photo de la page 1 */
+.float-frame {
+  float: right;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  padding: 8px;
+  box-shadow: var(--shadow);
+  margin: 0 0 8px 16px;
+  width: clamp(160px, 25%, 280px);
+}
+.float-frame img { display: block; width: 100%; height: auto; border-radius: 4px; }
+
+.cta { text-align: center; }
+
+/* ================================
+   Responsive
+================================ */
+@media (max-width: 1040px){
+  .search-form { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 720px){
+  .float-frame { float: none; margin: 0 auto 12px auto; display: block; width: min(260px, 80%); }
+}
+@media (max-width: 560px){
+  .search-form { grid-template-columns: 1fr; }
+}
+/* ... tout ton CSS précédent inchangé ... */
+
+/* Petite note d’aide sous le bouton */
+.helper-note{
+  margin:0;
+  font-size:.95em;
+  color:#556;
+}
+
+/* Info-bulle (icône "i") */
+.hint {
+  display:inline-block; margin-left:.35rem; width:1.05rem; height:1.05rem;
+  border-radius:50%; border:1px solid #9aa6b2; line-height:1.05rem; text-align:center;
+  font-size:.82em; color:#2e4057; cursor:help; position:relative;
+}
+.hint:hover::after, .hint:focus::after {
+  content: attr(data-tip);
+  position:absolute; left:50%; transform:translateX(-50%);
+  top:130%; white-space:nowrap; background:#333; color:#fff; font-size:.85em;
+  padding:.35rem .5rem; border-radius:6px; box-shadow:0 2px 6px rgba(0,0,0,.2);
+  z-index:10;
+}
+

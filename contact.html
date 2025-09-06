@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Histoire d'Auterive — Contact / Proposer un document</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Spécifiques à cette page (couleurs des cartes) */
+    :root {
+      --card1: #eef5ff;  /* bleu clair : carte "Infos & message" */
+      --card2: #e9f7ef;  /* vert clair : carte "Pièce jointe / Lien" */
+      --contact-soft: #6d8b99;
+    }
+    .contact .section-card{ padding:16px; }
+    .contact .hero { text-align: center; margin-bottom: 8px; }
+    .contact .hero h2{ margin: 0 0 8px 0; }
+
+    .contact .intro-bubble {
+      text-align: center; margin: 12px 0 18px; padding: 14px 18px;
+      background: #fffaf3; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      width: 100%;
+    }
+    .contact .intro-bubble p { font-weight: bold; margin: .4em 0; line-height: 1.5; }
+
+    .contact .grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    @media(max-width:900px){ .contact .grid{ grid-template-columns:1fr; } }
+
+    .contact .card{
+      background:var(--card); border:1px solid var(--border); border-radius:12px;
+      box-shadow:var(--shadow); display:flex; flex-direction:column; overflow:hidden; min-height:100%;
+    }
+    .contact .card .card-head{
+      padding:10px 12px; font-weight:600; display:flex; align-items:center; gap:8px;
+    }
+    .contact .infos-card .card-head{ background: var(--card1); color:#1d2a36; }
+    .contact .annexes-card  .card-head{ background: var(--card2); color:#1d2a36; }
+    .contact .card .card-body{ padding:12px; display:grid; gap:8px; flex:1; }
+    .contact .card .card-footer{
+      padding:10px 12px; border-top:1px solid var(--border);
+      display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap;
+    }
+
+    .contact label{ font-size:.95em; color:var(--text); display:block; }
+    .contact input[type="text"],
+    .contact input[type="email"],
+    .contact input[type="number"],
+    .contact textarea,
+    .contact input[type="file"]{
+      width:100%; padding:6px 10px; border:1px solid var(--border); border-radius:8px; font-size:.98em; outline:none;
+    }
+    .contact textarea{ resize:vertical; min-height:120px; }
+    .contact input:focus, .contact textarea:focus{
+      border-color:var(--contact-soft);
+      box-shadow:0 0 0 3px rgba(109,139,153,.18);
+    }
+
+    .antispam-mini { display:flex; align-items:center; gap:8px; }
+    .antispam-mini input[type="number"]{ width:70px; }
+
+    .consents{ display:grid; gap:6px; margin-top:6px; }
+
+    .help-toggle {
+      font-size:.92em; color:blue; cursor:pointer; text-decoration:underline; display:inline-block; margin-top:4px;
+    }
+    .help-box {
+      display:none; margin-top:6px; padding:10px 12px; border:1px dashed var(--border);
+      border-radius:8px; background:#fafafa; font-size:.92em;
+    }
+    .help-box ol{ margin:.4em 0 .4em; padding-left:1.4em; }
+    .help-box li{ margin:.25em 0; }
+    .help-actions { text-align:center; margin-top:8px; }
+
+    /* Disposition anti-spam + bouton + note */
+    .action-row{
+      margin-top:12px; display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap;
+      padding:12px; border:1px dashed var(--border); border-radius:12px; background:#fbfcff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="site-author">Jean Marc DAVID</span>
+    <h1>Histoire d'Auterive</h1>
+  </header>
+
+  <main>
+    <section class="contact">
+      <div class="section-card">
+
+        <div class="hero">
+          <h2>Contact / Proposer un document</h2>
+        </div>
+
+        <!-- Texte d’intro d’ORIGINE -->
+        <div class="intro-bubble">
+          <p>Vous souhaitez poser une question, corriger une notice ou partager un document lié à l’histoire d’Auterive&nbsp;?</p>
+          <p>Merci&nbsp;! Ce site vit grâce à vos contributions.</p>
+        </div>
+
+        <!-- CIBLE: iframe caché pour soumission sans quitter la page -->
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+        <!-- Formulaire Netlify -->
+        <form name="contact-contribution"
+              method="POST"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+              enctype="multipart/form-data"
+              target="hidden_iframe">
+          <input type="hidden" name="form-name" value="contact-contribution" />
+          <p style="display:none;"><label>Ne pas remplir : <input name="bot-field" /></label></p>
+
+          <div class="grid">
+            <!-- Carte INFOS & MESSAGE -->
+            <div class="card infos-card">
+              <div class="card-head">✉️ Contacter Jean Marc DAVID</div>
+              <div class="card-body">
+                <label>Votre nom*<br><input type="text" name="nom" id="nom" required></label>
+                <label>Votre e-mail*<br><input type="email" name="email" id="email" required></label>
+                <label>Objet de votre message (facultatif)<br><input type="text" name="objet" id="objet" placeholder="Sujet, référence, etc."></label>
+                <label>Votre message*<br><textarea name="message" id="message" required></textarea></label>
+              </div>
+            </div>
+
+            <!-- Carte ANNEXES -->
+            <div class="card annexes-card">
+              <div class="card-head">📎 Pièce jointe / Lien</div>
+              <div class="card-body">
+                <label>Joindre un fichier (≤ 10 Mo)<br>
+                  <input type="file" name="fichier" id="fichier" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+                </label>
+
+                <label>Lien de téléchargement (WeTransfer)<br>
+                  <input type="text" name="lien" id="lien" placeholder="Ex. https://we.tl/t-ABC123xyz">
+                  <span id="lienHelp" class="help-toggle">Comment obtenir un lien&nbsp;?</span>
+                  <div id="helpBox" class="help-box" aria-live="polite">
+                    <strong>WeTransfer (version française)</strong>
+                    <ol>
+                      <li>Allez sur <a href="https://wetransfer.com" target="_blank" rel="noopener">wetransfer.com</a>.</li>
+                      <li style="color:#444; font-style:italic;">💡 Naviguez entre les deux onglets <strong>Histoire d'Auterive</strong> et <strong>WeTransfer</strong>.</li>
+                      <li>Cliquez sur <em>Utiliser gratuitement</em> (si présent), puis acceptez les conditions.</li>
+                      <li>Cliquez sur <em>Ajouter vos fichiers</em> et choisissez votre document.</li>
+                      <li>Laissez le champ «&nbsp;Envoyer à&nbsp;» vide.</li>
+                      <li>Renseignez votre propre adresse e-mail (pour recevoir un code de vérification).</li>
+                      <li>Cliquez sur le bouton «&nbsp;…&nbsp;» (trois points), puis choisissez <em>Créer un lien</em>.</li>
+                      <li>Revenez sur la fenêtre principale et cliquez sur <em>Obtenir un lien</em>.</li>
+                      <li>Ouvrez votre e-mail et récupérez le code de vérification WeTransfer.</li>
+                      <li>Collez ce code dans «&nbsp;Saisissez le code de vérification&nbsp;», puis cliquez sur <em>Vérifier et envoyer</em>.</li>
+                      <li>WeTransfer affiche un lien (ex. <code>https://we.tl/…</code>) : copiez-le et collez-le dans le champ du formulaire.</li>
+                    </ol>
+                    <p>🔎 <strong>Remarque :</strong> parfois WeTransfer propose directement <em>Obtenir un lien</em> sans vérification. Dans ce cas, utilisez cette option et copiez le lien.</p>
+                    <p>✅ Vous n’avez pas besoin de l’adresse e-mail de Jean Marc DAVID pour créer un lien.</p>
+                    <div class="help-actions">
+                      <button type="button" id="closeHelp" class="btn">Fermer</button>
+                    </div>
+                  </div>
+                </label>
+
+                <!-- DEUX CASES distinctes avec icône "i" -->
+                <div class="consents">
+                  <label>
+                    <input type="checkbox" id="publication" name="publication">
+                    J’autorise la publication du document sur ce site.
+                    <span class="hint" tabindex="0" aria-label="Info"
+                          data-tip="Requise seulement si vous joignez un fichier ou un lien.">i</span>
+                  </label>
+                  <label>
+                    <input type="checkbox" id="droits" name="droits">
+                    Je certifie disposer des droits nécessaires pour publier ces informations.
+                    <span class="hint" tabindex="0" aria-label="Info"
+                          data-tip="Requise seulement si vous joignez un fichier ou un lien.">i</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rangée action -->
+          <div class="action-row">
+            <div class="antispam-mini">
+              <strong>Je ne suis pas un robot :</strong> <span>Combien font 2 + 3&nbsp;?</span>
+              <input type="number" id="antispam" min="0" aria-label="Test anti-spam" required>
+            </div>
+
+            <button type="button" id="sendBtn" class="btn">Envoyer</button>
+
+            <p class="helper-note">
+              <em>Les deux cases sont requises uniquement si vous joignez un fichier ou indiquez un lien.</em>
+            </p>
+          </div>
+        </form>
+
+        <!-- Message de remerciement -->
+        <div id="merci-message" style="display:none; padding:16px; background:#f6ffef; border:1px solid #cde9bf; border-radius:10px; margin-top:12px;">
+          <p style="margin:0 0 .6em 0; font-size:1.1em;">✅ Merci, votre message a bien été envoyé.</p>
+          <p style="margin:0 0 .6em 0;">Nous revenons vers vous rapidement.</p>
+          <p style="margin:0;">
+            <a href="/" class="btn" aria-label="Retour à l’accueil"><span aria-hidden="true">←</span> Retour à l’accueil</a>
+          </p>
+        </div>
+
+        <div class="legal">
+          <p><strong>Formats acceptés :</strong> Word, PDF, JPG, PNG.</p>
+          <p><strong>Gros fichiers (&gt; 10 Mo) :</strong> utilisez WeTransfer en choisissant <em>Obtenir un lien</em>, puis collez le lien dans le champ « Lien de téléchargement ».</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Histoire d'Auterive · <span id="pv-counter">—</span> <span id="pv-badge" title="État du compteur"></span></p>
+  </footer>
+
+  <script>
+    // Auto-resize des textareas
+    (function(){
+      const autos = document.querySelectorAll('textarea');
+      autos.forEach(el=>{
+        const resize = ()=>{ el.style.height='auto'; el.style.height = (el.scrollHeight)+'px'; };
+        ['input','change','cut','paste','drop','keydown'].forEach(ev=>el.addEventListener(ev, resize));
+        resize();
+      });
+    })();
+
+    // Toggle aide + bouton Fermer
+    (function(){
+      const toggle = document.getElementById('lienHelp');
+      const box = document.getElementById('helpBox');
+      const closeBtn = document.getElementById('closeHelp');
+      if(toggle && box){
+        toggle.addEventListener('click', ()=>{ box.style.display = (box.style.display==='block') ? 'none' : 'block'; });
+      }
+      if(closeBtn && box){
+        closeBtn.addEventListener('click', ()=>{ box.style.display = 'none'; });
+      }
+    })();
+
+    // Vérifs
+    function checkAntispam(){
+      const v = String(document.getElementById('antispam').value || '').trim();
+      if (v !== '5'){ alert('Test anti-spam : 2 + 3 = 5.'); return false; }
+      return true;
+    }
+    function looksLikeUrl(v){ return /^https?:\/\/\S+$/i.test(v); }
+
+    function validateForm(form){
+      const email = (document.getElementById('email').value||'').trim();
+      if(!email){ alert('Merci de renseigner votre e-mail.'); return false; }
+
+      const message = (document.getElementById('message').value||'').trim();
+      if(!message){ alert('Merci d’écrire un message.'); return false; }
+
+      const fileChosen = form.querySelector('#fichier').files.length > 0;
+      const lien = (document.getElementById('lien').value||'').trim();
+
+      if(lien && !looksLikeUrl(lien)){
+        alert('Le lien saisi ne ressemble pas à une adresse web valide.\nExemple : https://we.tl/t-ABC123xyz');
+        document.getElementById('lien').focus();
+        return false;
+      }
+
+      if(fileChosen || lien){
+        const pub   = document.getElementById('publication').checked;
+        const droits= document.getElementById('droits').checked;
+        if(!pub || !droits){
+          alert('Merci de cocher les 2 cases :\n- Autorisation de publication\n- Droits nécessaires');
+          return false;
+        }
+      }
+      return true;
+    }
+
+    // Soumission
+    (function(){
+      const form = document.forms['contact-contribution'];
+      const iframe = document.getElementById('hidden_iframe');
+      let submitted = false;
+
+      function showMerci(){
+        if (submitted) return;
+        submitted = true;
+        form.style.display = 'none';
+        const ok = document.getElementById('merci-message');
+        if(ok) ok.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        try{ form.reset(); }catch(e){}
+      }
+      iframe.addEventListener('load', showMerci);
+
+      document.getElementById('sendBtn').addEventListener('click', function(){
+        if(!checkAntispam()) return;
+        if(!validateForm(form)) return;
+        submitted = false;
+        form.submit();
+      });
+    })();
+
+    // Compteur
+    (function(){
+      const el = document.getElementById('pv-counter');
+      const badge = document.getElementById('pv-badge');
+      if(!el || !badge) return;
+      const NS='histoire-auterive.netlify.app', KEY='contact', LS='pv-'+KEY;
+      const show=(val,online)=>{ el.textContent=(typeof val==='number')?val.toLocaleString('fr-FR'):'—'; badge.textContent=online?'[✓]':'[~]'; };
+      const withTimeout=(p,ms)=>Promise.race([p,new Promise((_,rej)=>setTimeout(()=>rej(new Error('timeout')),ms))]);
+      function localFallback(){ let v=parseInt(localStorage.getItem(LS)||'0',10); v=isNaN(v)?1:v+1; localStorage.setItem(LS,String(v)); show(v,false); }
+      const url1='https://api.countapi.xyz/hit/'+encodeURIComponent(NS)+'/'+encodeURIComponent(KEY);
+      withTimeout(fetch(url1,{cache:'no-store'}),1500).then(r=>r.json()).then(d=>{
+        if(d&&typeof d.value==='number'){ show(d.value,true); } else throw new Error('no value');
+      }).catch(()=>{
+        const url2='https://api.counterapi.dev/v1/'+encodeURIComponent(NS)+'/'+encodeURIComponent(KEY)+'/up';
+        return withTimeout(fetch(url2,{cache:'no-store'}),1500).then(r=>r.json()).then(d=>{
+          if(d&&typeof d.count==='number'){ show(d.count,true); } else throw new Error('no value');
+        }).catch(localFallback);
+      });
+    })();
+  </script>
+</body>
+</html>
+

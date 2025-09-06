@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Histoire d'Auterive — Recherche</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Overlay de chargement */
+    #loader{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:#fff;z-index:9999}
+    #loader .box{width:min(92vw,480px);border:1px solid #e5e7eb;border-radius:16px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.08);text-align:center;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial}
+    #loader p{margin:8px 0 12px}
+    #pg{width:100%;height:20px}
+
+    /* Modal viewer */
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:9998}
+    .modal-content{position:relative;width:95vw;height:92vh;background:#111;padding:0;border-radius:14px;overflow:hidden;box-shadow:0 10px 35px rgba(0,0,0,.35)}
+    .modal header{position:absolute;inset:0 auto auto 0;height:48px;display:flex;align-items:center;gap:8px;padding:0 14px;background:linear-gradient(to bottom, rgba(0,0,0,.55), transparent);color:#fff;z-index:2}
+    .modal .close{margin-left:auto;cursor:pointer;border:0;background:#fff;color:#111;font-weight:600;border-radius:10px;padding:6px 10px}
+    #viewer{position:absolute;inset:0;top:0;left:0;width:100%;height:100%;border:0;background:#222}
+    .pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:999px;padding:6px 10px;color:#111;font-size:14px}
+    .dot{width:10px;height:10px;border-radius:50%;background:#111;animation: pulse 1.2s infinite ease-in-out}
+    @keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
+  </style>
+</head>
+<body>
+<header>
+  <span class="site-author">Jean Marc DAVID</span>
+  <h1>Histoire d'Auterive</h1>
+</header>
+
+<main>
+  <section class="recherche-section">
+    <h2>Recherche de notices</h2>
+
+    <!-- Cadre blanc des 4 cases -->
+    <div class="search-form">
+      <div class="col-min-220" style="display:flex;flex-direction:column;">
+        <label for="categorie">Catégorie</label>
+        <select id="categorie">
+          <option value="">— choisir —</option>
+        </select>
+      </div>
+
+      <div class="col-min-220" style="display:flex;flex-direction:column;">
+        <label for="objet">Objet</label>
+        <select id="objet">
+          <option value="">— choisir —</option>
+        </select>
+      </div>
+
+      <div class="col-min-220" style="display:flex;flex-direction:column;">
+        <label for="auteur">Auteur</label>
+        <select id="auteur">
+          <option value="">— choisir —</option>
+        </select>
+      </div>
+
+      <div class="col-min-260" style="display:flex;flex-direction:column;">
+        <label for="mot">Rechercher par mot du titre</label>
+        <input type="text" id="mot" placeholder="Saisir un mot clé" />
+      </div>
+    </div>
+
+    <!-- Ligne RAZ + lien contact : bouton centré, lien à droite -->
+    <div class="actions-raz" style="position:relative;">
+      <button id="resetBtn" class="btn" type="button">RAZ</button>
+      <a href="contact.html" style="position:absolute; right:0; top:50%; transform:translateY(-50%);">Contact / Contribuer</a>
+    </div>
+
+    <!-- Compteur -->
+    <div id="counter" class="counter">Résultats : 0 notice(s) trouvée(s)</div>
+
+    <!-- Résultats -->
+    <div id="results" class="results-box"></div>
+
+    <!-- Diagnostic -->
+    <div id="diag"></div>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2025 Histoire d'Auterive · <span id="pv-counter">—</span> <span id="pv-badge" title="État du compteur"></span></p>
+</footer>
+
+<!-- Overlay de chargement -->
+<div id="loader">
+  <div class="box">
+    <div class="pill"><span class="dot"></span> <span id="loader-text">Préparation du fichier…</span></div>
+    <p id="loader-sub">Merci de patienter, la notice peut être volumineuse.</p>
+    <progress id="pg" max="100" value="0"></progress>
+  </div>
+</div>
+
+<!-- Modal viewer PDF -->
+<div id="pdfModal" class="modal" aria-hidden="true" role="dialog">
+  <div class="modal-content">
+    <header>
+      <span id="pdfTitle"></span>
+      <button class="close" id="closeModal" aria-label="Fermer">Fermer</button>
+    </header>
+    <iframe id="viewer" title="Visionneuse PDF"></iframe>
+  </div>
+</div>
+
+<!-- JSON embarqué (facultatif, si besoin) -->
+<script id="listing-json" type="application/json">
+[
+]
+</script>
+
+<script>
+  // ===== Sélecteurs utiles =====
+  const selCat  = () => document.getElementById("categorie");
+  const selObj  = () => document.getElementById("objet");
+  const selAut  = () => document.getElementById("auteur");
+  const inpMot  = () => document.getElementById("mot");
+  const resBox  = () => document.getElementById("results");
+  const counter = () => document.getElementById("counter");
+  const diagEl  = () => document.getElementById("diag");
+
+  const loaderEl = () => document.getElementById('loader');
+  const pgEl     = () => document.getElementById('pg');
+  const loaderText = () => document.getElementById('loader-text');
+  const modalEl  = () => document.getElementById('pdfModal');
+  const viewerEl = () => document.getElementById('viewer');
+  const pdfTitleEl = () => document.getElementById('pdfTitle');
+
+  let notices = [];
+
+  async function loadData(){
+    try {
+      const resp = await fetch('listing.json', { cache: 'no-cache' });
+      if (resp.ok) {
+        const data = await resp.json();
+        if (Array.isArray(data) && data.length) return data;
+      }
+    } catch(e) { }
+    try {
+      const raw = document.getElementById("listing-json").textContent;
+      const data = JSON.parse(raw);
+      return Array.isArray(data) ? data : [];
+    } catch(e) {
+      return [];
+    }
+  }
+
+  const norm = s => (s||"").toString().trim().toLowerCase();
+  const sortFr = arr => [...arr].sort((a,b)=>a.localeCompare(b,"fr",{sensitivity:"base"}));
+
+  function getField(n, key) {
+    if (!n) return "";
+    if (n[key] != null) return String(n[key]);
+    const map = {
+      "Categorie": ["Catégorie","Catégories","Categorie "],
+      "Objet":     ["Objets","Objet "],
+      "Auteur":    ["Auteurs","Auteur "],
+      "Titre":     ["Titre "],
+      "Fichier":   ["Fichier "]
+    };
+    const alts = map[key] || [];
+    for (const k of alts) if (n[k] != null) return String(n[k]);
+    return "";
+  }
+
+  function uniqueValuesFor(list, key){
+    const set = new Set();
+    for (const n of list){
+      const v = getField(n, key).trim();
+      if (v) set.add(v);
+    }
+    return sortFr([...set]);
+  }
+
+  function fillSelect(sel, values, current=""){
+    sel.innerHTML = "";
+    const opt0 = document.createElement("option");
+    opt0.value = "";
+    opt0.textContent = "— choisir —";
+    sel.appendChild(opt0);
+
+    let keep = false;
+    for (const v of values){
+      const opt = document.createElement("option");
+      opt.value = v;
+      opt.textContent = v;
+      if (v === current){ opt.selected = true; keep = true; }
+      sel.appendChild(opt);
+    }
+    if (!keep && current && values.length) sel.value = "";
+  }
+
+  function populateSelects(universe){
+    const c = selCat().value, o = selObj().value, a = selAut().value;
+    fillSelect(selCat(), uniqueValuesFor(universe,"Categorie"), c);
+    fillSelect(selObj(), uniqueValuesFor(universe,"Objet"),     o);
+    fillSelect(selAut(), uniqueValuesFor(universe,"Auteur"),    a);
+  }
+
+  function getNoticeUrl(n){
+    const od = n && n["Lien OneDrive"] ? String(n["Lien OneDrive"]).trim() : "";
+    if (od && /^https?:\/\//i.test(od)) return od;
+    const f = getField(n,"Fichier").trim();
+    if (!f) return "";
+    if (/^https?:\/\//i.test(f)) return f;
+    if (/^[a-zA-Z]:\\\\/.test(f) || f.startsWith("\\\\")) return "";
+    return "Source/" + f.replace(/^Source[\\/]/i,"");
+  }
+
+  function filterAll(base=notices){
+    const c = selCat().value;
+    const o = selObj().value;
+    const a = selAut().value;
+    const m = norm(inpMot().value);
+    return base.filter(n=>{
+      const tC = getField(n,"Categorie").trim();
+      const tO = getField(n,"Objet").trim();
+      const tA = getField(n,"Auteur").trim();
+      const tT = norm(getField(n,"Titre"));
+      const okC = !c || tC === c;
+      const okO = !o || tO === o;
+      const okA = !a || tA === a;
+      const okM = !m || tT.includes(m);
+      return okC && okO && okA && okM;
+    });
+  }
+
+  function drawResults(){
+    const filtered = filterAll();
+    populateSelects(filtered);
+    const n = filtered.length;
+    counter().textContent = `Résultats : ${n} notice(s) trouvée(s)`;
+    const box = resBox();
+    box.innerHTML = "";
+    if (!filtered.length){ box.innerHTML = "<p>Aucune notice trouvée</p>"; return; }
+
+    filtered.forEach(n=>{
+      const p = document.createElement("p");
+      p.textContent = getField(n,"Titre") || "(Sans titre)";
+      const url = getNoticeUrl(n);
+      p.style.cursor = 'pointer';
+      p.title = 'Ouvrir la notice';
+      p.addEventListener("click", ()=>{
+        if (url) openNotice(url, getField(n,'Titre'));
+        else alert("Aucun lien disponible pour cette notice.");
+      });
+      box.appendChild(p);
+    });
+  }
+
+  function attach(){
+    selCat().addEventListener("mousedown", ()=>{ if (selCat().options.length<=1)  populateSelects(notices); });
+    selObj().addEventListener("mousedown", ()=>{ if (selObj().options.length<=1)  populateSelects(notices); });
+    selAut().addEventListener("mousedown", ()=>{ if (selAut().options.length<=1)  populateSelects(notices); });
+
+    selCat().addEventListener("change", drawResults);
+    selObj().addEventListener("change", drawResults);
+    selAut().addEventListener("change", drawResults);
+    inpMot().addEventListener("input", drawResults);
+
+    document.getElementById("resetBtn").addEventListener("click", ()=>{
+      selCat().value = "";
+      selObj().value = "";
+      selAut().value = "";
+      inpMot().value = "";
+      populateSelects(notices);
+      drawResults();
+    });
+
+    document.getElementById('closeModal').addEventListener('click', closeModal);
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModal(); });
+  }
+
+  function closeModal(){
+    modalEl().style.display = 'none';
+    viewerEl().src = 'about:blank';
+    viewerEl().removeAttribute('src');
+  }
+
+  // Détermine l'URL à utiliser pour le fetch (proxy pour OneDrive/SharePoint)
+  function buildFetchUrl(raw){
+    const u = String(raw||'');
+    const isRemote = /^https?:\/\//i.test(u);
+    const isOD = /onedrive\.live\.com|sharepoint\.com|1drv\.ms/i.test(u);
+    if (isRemote && isOD){
+      return '/.netlify/functions/pdf?src=' + encodeURIComponent(u); // nécessite la fonction Netlify (voir README)
+    }
+    return u; // fichiers locaux ("Source/") ou URLs déjà directes
+  }
+
+  async function openNotice(rawUrl, title){
+    const fetchUrl = buildFetchUrl(rawUrl);
+    loaderText().textContent = 'Chargement de la notice…';
+    document.getElementById('loader-sub').textContent = 'Merci de patienter, la notice peut être volumineuse.';
+    loaderEl().style.display = 'flex';
+    pgEl().value = 0;
+
+    try{
+      const res = await fetch(fetchUrl, { redirect: 'follow' });
+      if(!res.ok) throw new Error('HTTP '+res.status);
+
+      const total = +res.headers.get('Content-Length') || 0;
+      const reader = res.body?.getReader?.();
+
+      if(reader){
+        const chunks = [];
+        let received = 0;
+        while(true){
+          const {done, value} = await reader.read();
+          if(done) break;
+          chunks.push(value);
+          received += value.length;
+          if(total) pgEl().value = Math.round(received*100/total);
+        }
+        const blob = new Blob(chunks, {type:'application/pdf'});
+        const url = URL.createObjectURL(blob);
+        showPdf(url, title);
+      } else {
+        // Pas de streaming (vieux navigateur) : on bascule sur ouverture directe
+        showPdf(fetchUrl, title);
+      }
+    } catch(err){
+      console.error('openNotice error', err);
+      alert("Échec du chargement. Ouverture dans un nouvel onglet.");
+      window.open(rawUrl, '_blank', 'noopener');
+    } finally {
+      loaderEl().style.display = 'none';
+    }
+  }
+
+  function showPdf(url, title){
+    pdfTitleEl().textContent = title || 'Notice';
+    viewerEl().src = url;
+    modalEl().style.display = 'flex';
+  }
+
+  (async function init(){
+    notices = await loadData();
+    populateSelects(notices);
+    attach();
+    drawResults();
+
+    const dC = uniqueValuesFor(notices,"Categorie").length;
+    const dO = uniqueValuesFor(notices,"Objet").length;
+    const dA = uniqueValuesFor(notices,"Auteur").length;
+    diagEl().textContent = `Diagnostic : ${notices.length} notices | Catégories : ${dC} | Objets : ${dO} | Auteurs : ${dA}`;
+  })();
+</script>
+
+<!-- Compteur de visites (page: recherche) -->
+<script>
+(function(){
+  const el = document.getElementById('pv-counter');
+  const badge = document.getElementById('pv-badge');
+  if(!el || !badge) return;
+
+  const NS   = 'histoire-auterive.netlify.app';
+  const KEY  = 'recherche';
+  const LS   = 'pv-'+KEY;
+
+  function show(val, online){
+    el.textContent = (typeof val === 'number') ? val.toLocaleString('fr-FR') : '—';
+    badge.textContent = online ? '[✓]' : '[~]';
+  }
+  function withTimeout(p, ms){
+    return Promise.race([ p, new Promise((_,rej)=>setTimeout(()=>rej(new Error('timeout')), ms)) ]);
+  }
+  function localFallback(){
+    let v = parseInt(localStorage.getItem(LS)||'0',10);
+    v = isNaN(v) ? 1 : v+1;
+    localStorage.setItem(LS, String(v));
+    show(v, false);
+  }
+
+  const url1 = 'https://api.countapi.xyz/hit/'+encodeURIComponent(NS)+'/'+encodeURIComponent(KEY);
+  withTimeout(fetch(url1, {cache:'no-store'}), 1500)
+    .then(r=>r.json())
+    .then(d=>{
+      if(d && typeof d.value === 'number'){ show(d.value, true); }
+      else throw new Error('no value from countapi');
+    })
+    .catch(()=>{
+      const url2 = 'https://api.counterapi.dev/v1/'+encodeURIComponent(NS)+'/'+encodeURIComponent(KEY)+'/up';
+      return withTimeout(fetch(url2, {cache:'no-store'}), 1500)
+        .then(r=>r.json())
+        .then(d=>{
+          if(d && typeof d.count === 'number'){ show(d.count, true); }
+          else throw new Error('no value from counterapi');
+        })
+        .catch(localFallback);
+    });
+})();
+</script>
+</body>
+</html>
+

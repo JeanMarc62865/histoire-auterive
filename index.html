@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Histoire d'Auterive — Accueil</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <span class="site-author">Jean Marc DAVID</span>
+    <h1 class="site-title">Histoire d'Auterive</h1>
+  </header>
+
+  <main>
+    <section class="presentation">
+      <div class="presentation-inner">
+        <h2 class="presentation-title">Bienvenue sur Histoire d'Auterive</h2>
+
+        <div class="intro-text">
+          <figure class="float-frame">
+            <img src="images/Auteur_1.png" alt="Photo de l'auteur du site Histoire d'Auterive" />
+          </figure>
+
+          <p><strong>À propos de ce site</strong></p>
+          <p>
+            Lors de la rédaction de mon livre <strong>« Auterive, dis-moi ton histoire »</strong>, (1) j’ai réuni une grande quantité d’informations : recherches sur Internet, documents consultés à la médiathèque de Venerque, archives personnelles et précieuses que plusieurs habitants m'ont confiées.
+          </p>
+          <p>
+            Une fois l’ouvrage achevé, il m’a semblé dommage que toutes ces sources dorment dans un coin de mon ordinateur. C’est ainsi qu’est née l’idée de ce site : offrir à chacun la possibilité de consulter et de partager des informations sur Auterive et ses environs.
+          </p>
+          <p>
+            Mon objectif est de mettre à disposition un outil convivial, accessible à tous, qui permette de découvrir ou redécouvrir notre patrimoine local. Ce site n’a pas la prétention d’être exhaustif, mais il se veut une base vivante et ouverte, appelée à s’enrichir au fil du temps.
+          </p>
+          <p>
+            Je vous invite donc à participer à cette aventure collective : vos témoignages, documents et souvenirs sont les bienvenus pour compléter et faire grandir ce projet au service de la mémoire d’Auterive.
+          </p>
+          <p>
+            (1) Vous pouvez trouver ce livre sur le site
+            <a href="https://www.thebookedition.com/fr/37704_jean-marc-david" target="_blank" rel="noopener">www.thebookedition.com/fr/37704_jean-marc-david</a>.
+          </p>
+        </div>
+
+        <div class="cta">
+          <a href="conditions.html" class="btn">Suite</a>
+        </div>
+
+        <!-- Lien Contact / Contribuer, en bas à droite, aligné avec la largeur du texte -->
+        <div class="intro-text" style="text-align:right; margin-top:6px;">
+          <a href="contact.html">Contact / Contribuer</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Histoire d'Auterive · <span id="pv-counter">—</span> <span id="pv-badge" title="État du compteur"></span></p>
+  </footer>
+
+  <!-- Compteur de visites (page: index) -->
+  <script>
+  (function(){
+    const el = document.getElementById('pv-counter');
+    const badge = document.getElementById('pv-badge');
+    if(!el || !badge) return;
+
+    const NS   = 'histoire-auterive.netlify.app';
+    const KEY  = 'index';
+    const LS   = 'pv-'+KEY;
+
+    function show(val, online){
+      el.textContent = (typeof val === 'number') ? val.toLocaleString('fr-FR') : '—';
+      badge.textContent = online ? '[✓]' : '[~]';
+    }
+    function withTimeout(p, ms){
+      return Promise.race([ p, new Promise((_,rej)=>setTimeout(()=>rej(new Error('timeout')), ms)) ]);
+    }
+    function localFallback(){
+      let v = parseInt(localStorage.getItem(LS)||'0',10);
+      v = isNaN(v) ? 1 : v+1;
+      localStorage.setItem(LS, String(v));
+      show(v, false);
+    }
+    const url1 = 'https://api.countapi.xyz/hit/'+encodeURIComponent(NS)+'/'+encodeURIComponent(KEY);
+    withTimeout(fetch(url1, {cache:'no-store'}), 1500)
+      .then(r=>r.json())
+      .then(d=>{
+        if(d && typeof d.value === 'number'){ show(d.value, true); }
+        else throw new Error('no value from countapi');
+      })
+      .catch(()=>{
+        const url2 = 'https://api.counterapi.dev/v1/'+encodeURIComponent(NS)+'/'+encodeURIComponent(KEY)+'/up';
+        return withTimeout(fetch(url2, {cache:'no-store'}), 1500)
+          .then(r=>r.json())
+          .then(d=>{
+            if(d && typeof d.count === 'number'){ show(d.count, true); }
+            else throw new Error('no value from counterapi');
+          })
+          .catch(localFallback);
+      });
+  })();
+  </script>
+</body>
+</html>
+
