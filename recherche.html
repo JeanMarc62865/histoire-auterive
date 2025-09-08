@@ -181,18 +181,18 @@
     });
   }
 
-  // ==== Ajout loader ====
+  // ==== Loader : version qui reste affichée jusqu'au retour sur l'onglet ====
   function haShowLoader(){
     const el = document.getElementById('ha-loader');
     if (el) el.style.display = 'grid';
-    clearTimeout(window.__haHideTO);
-    window.__haHideTO = setTimeout(haHideLoader, 15000);
   }
   function haHideLoader(){
     const el = document.getElementById('ha-loader');
     if (el) el.style.display = 'none';
-    clearTimeout(window.__haHideTO);
   }
+  // Cache l'overlay quand l'onglet reprend le focus
+  window.addEventListener('focus', haHideLoader);
+  // Filet de sécurité si le navigateur n'émet pas 'focus'
   document.addEventListener('visibilitychange', ()=>{
     if (document.visibilityState === 'visible') haHideLoader();
   });
@@ -211,12 +211,14 @@
       const url = getNoticeUrl(n);
       p.addEventListener("click", ()=>{
         if (url) {
-          haShowLoader(); // <-- affiche l'overlay
-          setTimeout(()=>{
+          haShowLoader();                // affiche l'overlay immédiatement
+          setTimeout(()=>{               // laisse 300 ms pour être bien visible
             window.open(url,"_blank","noopener");
-          }, 100);
+            // on NE cache PAS ici : on attend que l'utilisateur revienne (focus/visibility)
+          }, 300);
+        } else {
+          alert("Aucun lien disponible pour cette notice.");
         }
-        else alert("Aucun lien disponible pour cette notice.");
       });
       box.appendChild(p);
     });
@@ -300,7 +302,7 @@
 })();
 </script>
 
-<!-- Overlay loader -->
+<!-- Overlay loader indéterminé -->
 <div id="ha-loader" style="position:fixed;inset:0;display:none;place-items:center;background:#fff;z-index:9999;">
   <div style="width:min(92vw,420px);font-family:system-ui,Segoe UI,Roboto,Arial;">
     <p style="margin:0 0 10px 0;text-align:center;font-weight:600">Ouverture de la notice…</p>
