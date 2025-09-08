@@ -2,37 +2,31 @@
 export default async (req) => {
   try {
     const url = new URL(req.url);
-    let src = url.searchParams.get("src");
+    const src = url.searchParams.get("src");
+    if (!src) return new Response("Missing 'src' query parameter", { status: 400 });
 
-    if (!src) {
-      return new Response("Missing 'src' query parameter", { status: 400 });
-    }
-
-    // Vérifie que c’est bien une URL valide
     let target;
-    try {
-      target = new URL(src);
-    } catch {
-      return new Response("Invalid 'src' URL", { status: 400 });
-    }
+    try { target = new URL(src); }
+    catch { return new Response("Invalid 'src' URL", { status: 400 }); }
     if (!/^https?:$/.test(target.protocol)) {
       return new Response("Only http(s) URLs are allowed", { status: 400 });
     }
 
-    // Télécharge le PDF depuis OneDrive
-    const upstream = await fetch(target, { redirect: "follow" });
-    if (!upstream.ok) {
-      return new Response(`Upstream error (${upstream.status})`, { status: 502 });
+    // Si ce n'est pas OneDrive/SharePoint, on redirige tel quel.
+    const isOD = /onedrive\.live\.com|sharepoint\.com|1drv\.ms/i.test(target.hostname);
+    if (!isOD) {
+      return Response.redirect(target.toString(), 302);
     }
 
-    // Prépare la réponse (affichage inline)
-    const headers = new Headers(upstream.headers);
-    headers.set("Content-Type", "application/pdf");
-    headers.set("Cache-Control", "public, max-age=31536000, immutable");
-    const filename = target.pathname.split("/").pop() || "notice.pdf";
-    headers.set("Content-Disposition", `inline; filename="${filename}"`);
+    // Force le téléchargement direct (évite le viewer + contourne les 403 côté proxy)
+    if (target.searchParams.has("download")) {
+      target.searchParams.set("download", "1");
+    } else {
+      target.search += (target.search ? "&" : "?") + "download=1";
+    }
 
-    return new Response(upstream.body, { status: 200, headers });
+    // Redirige le navigateur vers l'URL finale (le navigateur suivra toutes les redirections OneDrive)
+    return Response.redirect(target.toString(), 302);
   } catch (e) {
     return new Response("Unexpected server error", { status: 500 });
   }
