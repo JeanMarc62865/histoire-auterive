@@ -85,13 +85,15 @@
   let notices = [];
 
   async function loadData(){
+    // on force le non-cache avec un timestamp
     try {
-      const resp = await fetch('listing.json', { cache: 'no-cache' });
+      const resp = await fetch('listing.json?ts=' + Date.now(), { cache: 'no-store' });
       if (resp.ok) {
         const data = await resp.json();
         if (Array.isArray(data) && data.length) return data;
       }
     } catch(e) { }
+    // fallback éventuel sur le JSON embarqué
     try {
       const raw = document.getElementById("listing-json").textContent;
       const data = JSON.parse(raw);
@@ -154,8 +156,10 @@
   }
 
   function getNoticeUrl(n){
+    // priorité au lien OneDrive s'il existe
     const od = n && n["Lien OneDrive"] ? String(n["Lien OneDrive"]).trim() : "";
     if (od && /^https?:\/\//i.test(od)) return od;
+    // sinon champ "Fichier"
     const f = getField(n,"Fichier").trim();
     if (!f) return "";
     if (/^https?:\/\//i.test(f)) return f;
@@ -181,7 +185,7 @@
     });
   }
 
-  // ==== Loader : version qui reste affichée jusqu'au retour sur l'onglet ====
+  // ==== Loader : reste affiché jusqu'au retour sur l'onglet ====
   function haShowLoader(){
     const el = document.getElementById('ha-loader');
     if (el) el.style.display = 'grid';
@@ -190,36 +194,50 @@
     const el = document.getElementById('ha-loader');
     if (el) el.style.display = 'none';
   }
-  // Cache l'overlay quand l'onglet reprend le focus
   window.addEventListener('focus', haHideLoader);
-  // Filet de sécurité si le navigateur n'émet pas 'focus'
   document.addEventListener('visibilitychange', ()=>{
     if (document.visibilityState === 'visible') haHideLoader();
   });
 
+  // ==== Rendu des résultats (avec passage par la fonction Netlify pour OneDrive) ====
   function drawResults(){
     const filtered = filterAll();
     populateSelects(filtered);
     const n = filtered.length;
     counter().textContent = `Résultats : ${n} notice(s) trouvée(s)`;
+
     const box = resBox();
     box.innerHTML = "";
-    if (!filtered.length){ box.innerHTML = "<p>Aucune notice trouvée</p>"; return; }
+
+    if (!filtered.length){
+      box.innerHTML = "<p>Aucune notice trouvée</p>";
+      return;
+    }
+
     filtered.forEach(n=>{
       const p = document.createElement("p");
       p.textContent = getField(n,"Titre") || "(Sans titre)";
+
       const url = getNoticeUrl(n);
+
       p.addEventListener("click", ()=>{
-        if (url) {
-          haShowLoader();                // affiche l'overlay immédiatement
-          setTimeout(()=>{               // laisse 300 ms pour être bien visible
-            window.open(url,"_blank","noopener");
-            // on NE cache PAS ici : on attend que l'utilisateur revienne (focus/visibility)
+        // on reconnaît les liens OneDrive / SharePoint / 1drv.ms
+        const isOD = /onedrive\.live\.com|sharepoint\.com|1drv\.ms/i.test(url);
+        // si OneDrive => on passe par la fonction proxy, sinon on ouvre l’URL telle quelle
+        const finalUrl = isOD
+          ? '/.netlify/functions/pdf?src=' + encodeURIComponent(url)
+          : url;
+
+        if (finalUrl) {
+          haShowLoader();
+          setTimeout(()=>{
+            window.open(finalUrl, "_blank", "noopener");
           }, 300);
         } else {
           alert("Aucun lien disponible pour cette notice.");
         }
       });
+
       box.appendChild(p);
     });
   }
@@ -234,24 +252,15 @@
     selAut().addEventListener("change", drawResults);
     inpMot().addEventListener("input", drawResults);
 
-   p.addEventListener("click", ()=>{
-  // Si l'URL vient de OneDrive/SharePoint/1drv.ms, on passe par la fonction
-  const isOD = /onedrive\.live\.com|sharepoint\.com|1drv\.ms/i.test(url);
-  const finalUrl = isOD
-    ? '/.netlify/functions/pdf?src=' + encodeURIComponent(url)
-    : url;
-
-  if (finalUrl) {
-    haShowLoader(); // ton overlay
-    setTimeout(()=>{
-      window.open(finalUrl, "_blank", "noopener");
-      // on laissera l'overlay jusqu'au retour sur l'onglet (déjà géré plus haut)
-    }, 300);
-  } else {
-    alert("Aucun lien disponible pour cette notice.");
+    document.getElementById("resetBtn").addEventListener("click", ()=>{
+      selCat().value = "";
+      selObj().value = "";
+      selAut().value = "";
+      inpMot().value = "";
+      populateSelects(notices);
+      drawResults();
+    });
   }
-});
-
 
   (async function init(){
     notices = await loadData();
