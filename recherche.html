@@ -5,23 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Histoire d'Auterive — Recherche</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    /* Overlay de chargement */
-    #loader{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:#fff;z-index:9999}
-    #loader .box{width:min(92vw,480px);border:1px solid #e5e7eb;border-radius:16px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.08);text-align:center;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial}
-    #loader p{margin:8px 0 12px}
-    #pg{width:100%;height:20px}
-
-    /* Modal viewer */
-    .modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:9998}
-    .modal-content{position:relative;width:95vw;height:92vh;background:#111;padding:0;border-radius:14px;overflow:hidden;box-shadow:0 10px 35px rgba(0,0,0,.35)}
-    .modal header{position:absolute;inset:0 auto auto 0;height:48px;display:flex;align-items:center;gap:8px;padding:0 14px;background:linear-gradient(to bottom, rgba(0,0,0,.55), transparent);color:#fff;z-index:2}
-    .modal .close{margin-left:auto;cursor:pointer;border:0;background:#fff;color:#111;font-weight:600;border-radius:10px;padding:6px 10px}
-    #viewer{position:absolute;inset:0;top:0;left:0;width:100%;height:100%;border:0;background:#222}
-    .pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:999px;padding:6px 10px;color:#111;font-size:14px}
-    .dot{width:10px;height:10px;border-radius:50%;background:#111;animation: pulse 1.2s infinite ease-in-out}
-    @keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
-  </style>
 </head>
 <body>
 <header>
@@ -83,26 +66,6 @@
   <p>&copy; 2025 Histoire d'Auterive · <span id="pv-counter">—</span> <span id="pv-badge" title="État du compteur"></span></p>
 </footer>
 
-<!-- Overlay de chargement -->
-<div id="loader">
-  <div class="box">
-    <div class="pill"><span class="dot"></span> <span id="loader-text">Préparation du fichier…</span></div>
-    <p id="loader-sub">Merci de patienter, la notice peut être volumineuse.</p>
-    <progress id="pg" max="100" value="0"></progress>
-  </div>
-</div>
-
-<!-- Modal viewer PDF -->
-<div id="pdfModal" class="modal" aria-hidden="true" role="dialog">
-  <div class="modal-content">
-    <header>
-      <span id="pdfTitle"></span>
-      <button class="close" id="closeModal" aria-label="Fermer">Fermer</button>
-    </header>
-    <iframe id="viewer" title="Visionneuse PDF"></iframe>
-  </div>
-</div>
-
 <!-- JSON embarqué (facultatif, si besoin) -->
 <script id="listing-json" type="application/json">
 [
@@ -118,13 +81,6 @@
   const resBox  = () => document.getElementById("results");
   const counter = () => document.getElementById("counter");
   const diagEl  = () => document.getElementById("diag");
-
-  const loaderEl = () => document.getElementById('loader');
-  const pgEl     = () => document.getElementById('pg');
-  const loaderText = () => document.getElementById('loader-text');
-  const modalEl  = () => document.getElementById('pdfModal');
-  const viewerEl = () => document.getElementById('viewer');
-  const pdfTitleEl = () => document.getElementById('pdfTitle');
 
   let notices = [];
 
@@ -203,7 +159,7 @@
     const f = getField(n,"Fichier").trim();
     if (!f) return "";
     if (/^https?:\/\//i.test(f)) return f;
-    if (/^[a-zA-Z]:\\\\/.test(f) || f.startsWith("\\\\")) return "";
+    if (/^[a-zA-Z]:\\/.test(f) || f.startsWith("\\\\")) return "";
     return "Source/" + f.replace(/^Source[\\/]/i,"");
   }
 
@@ -225,6 +181,22 @@
     });
   }
 
+  // ==== Ajout loader ====
+  function haShowLoader(){
+    const el = document.getElementById('ha-loader');
+    if (el) el.style.display = 'grid';
+    clearTimeout(window.__haHideTO);
+    window.__haHideTO = setTimeout(haHideLoader, 15000);
+  }
+  function haHideLoader(){
+    const el = document.getElementById('ha-loader');
+    if (el) el.style.display = 'none';
+    clearTimeout(window.__haHideTO);
+  }
+  document.addEventListener('visibilitychange', ()=>{
+    if (document.visibilityState === 'visible') haHideLoader();
+  });
+
   function drawResults(){
     const filtered = filterAll();
     populateSelects(filtered);
@@ -233,15 +205,17 @@
     const box = resBox();
     box.innerHTML = "";
     if (!filtered.length){ box.innerHTML = "<p>Aucune notice trouvée</p>"; return; }
-
     filtered.forEach(n=>{
       const p = document.createElement("p");
       p.textContent = getField(n,"Titre") || "(Sans titre)";
       const url = getNoticeUrl(n);
-      p.style.cursor = 'pointer';
-      p.title = 'Ouvrir la notice';
       p.addEventListener("click", ()=>{
-        if (url) openNotice(url, getField(n,'Titre'));
+        if (url) {
+          haShowLoader(); // <-- affiche l'overlay
+          setTimeout(()=>{
+            window.open(url,"_blank","noopener");
+          }, 100);
+        }
         else alert("Aucun lien disponible pour cette notice.");
       });
       box.appendChild(p);
@@ -266,72 +240,6 @@
       populateSelects(notices);
       drawResults();
     });
-
-    document.getElementById('closeModal').addEventListener('click', closeModal);
-    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModal(); });
-  }
-
-  function closeModal(){
-    modalEl().style.display = 'none';
-    viewerEl().src = 'about:blank';
-    viewerEl().removeAttribute('src');
-  }
-
-  // Détermine l'URL à utiliser pour le fetch (proxy pour OneDrive/SharePoint)
-  function buildFetchUrl(raw){
-    const u = String(raw||'');
-    const isRemote = /^https?:\/\//i.test(u);
-    const isOD = /onedrive\.live\.com|sharepoint\.com|1drv\.ms/i.test(u);
-    if (isRemote && isOD){
-      return '/.netlify/functions/pdf?src=' + encodeURIComponent(u); // nécessite la fonction Netlify (voir README)
-    }
-    return u; // fichiers locaux ("Source/") ou URLs déjà directes
-  }
-
-  async function openNotice(rawUrl, title){
-    const fetchUrl = buildFetchUrl(rawUrl);
-    loaderText().textContent = 'Chargement de la notice…';
-    document.getElementById('loader-sub').textContent = 'Merci de patienter, la notice peut être volumineuse.';
-    loaderEl().style.display = 'flex';
-    pgEl().value = 0;
-
-    try{
-      const res = await fetch(fetchUrl, { redirect: 'follow' });
-      if(!res.ok) throw new Error('HTTP '+res.status);
-
-      const total = +res.headers.get('Content-Length') || 0;
-      const reader = res.body?.getReader?.();
-
-      if(reader){
-        const chunks = [];
-        let received = 0;
-        while(true){
-          const {done, value} = await reader.read();
-          if(done) break;
-          chunks.push(value);
-          received += value.length;
-          if(total) pgEl().value = Math.round(received*100/total);
-        }
-        const blob = new Blob(chunks, {type:'application/pdf'});
-        const url = URL.createObjectURL(blob);
-        showPdf(url, title);
-      } else {
-        // Pas de streaming (vieux navigateur) : on bascule sur ouverture directe
-        showPdf(fetchUrl, title);
-      }
-    } catch(err){
-      console.error('openNotice error', err);
-      alert("Échec du chargement. Ouverture dans un nouvel onglet.");
-      window.open(rawUrl, '_blank', 'noopener');
-    } finally {
-      loaderEl().style.display = 'none';
-    }
-  }
-
-  function showPdf(url, title){
-    pdfTitleEl().textContent = title || 'Notice';
-    viewerEl().src = url;
-    modalEl().style.display = 'flex';
   }
 
   (async function init(){
@@ -391,6 +299,26 @@
     });
 })();
 </script>
+
+<!-- Overlay loader -->
+<div id="ha-loader" style="position:fixed;inset:0;display:none;place-items:center;background:#fff;z-index:9999;">
+  <div style="width:min(92vw,420px);font-family:system-ui,Segoe UI,Roboto,Arial;">
+    <p style="margin:0 0 10px 0;text-align:center;font-weight:600">Ouverture de la notice…</p>
+    <div style="height:10px;border-radius:999px;background:#eee;overflow:hidden;">
+      <div id="ha-bar" style="height:100%;width:30%;background:#68a;transform:translateX(-30%);animation:haSlide 1.2s ease-in-out infinite;"></div>
+    </div>
+    <p style="margin:10px 0 0 0;text-align:center;color:#666;font-size:14px">Merci de patienter</p>
+  </div>
+</div>
+
+<style>
+@keyframes haSlide {
+  0%   { transform:translateX(-30%); }
+  50%  { transform:translateX(100%); }
+  100% { transform:translateX(-30%); }
+}
+</style>
+
 </body>
 </html>
 
