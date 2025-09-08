@@ -234,15 +234,24 @@
     selAut().addEventListener("change", drawResults);
     inpMot().addEventListener("input", drawResults);
 
-    document.getElementById("resetBtn").addEventListener("click", ()=>{
-      selCat().value = "";
-      selObj().value = "";
-      selAut().value = "";
-      inpMot().value = "";
-      populateSelects(notices);
-      drawResults();
-    });
+   p.addEventListener("click", ()=>{
+  // Si l'URL vient de OneDrive/SharePoint/1drv.ms, on passe par la fonction
+  const isOD = /onedrive\.live\.com|sharepoint\.com|1drv\.ms/i.test(url);
+  const finalUrl = isOD
+    ? '/.netlify/functions/pdf?src=' + encodeURIComponent(url)
+    : url;
+
+  if (finalUrl) {
+    haShowLoader(); // ton overlay
+    setTimeout(()=>{
+      window.open(finalUrl, "_blank", "noopener");
+      // on laissera l'overlay jusqu'au retour sur l'onglet (déjà géré plus haut)
+    }, 300);
+  } else {
+    alert("Aucun lien disponible pour cette notice.");
   }
+});
+
 
   (async function init(){
     notices = await loadData();
