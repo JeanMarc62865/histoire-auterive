@@ -1,10 +1,87 @@
 [
   {
-    "Categorie": "Célébrité",
-    "Objet": "Ysalguier",
-    "Auteur": "Christian ISALGUIER",
-    "Titre": "ÂGE (L')  D'OR DES YSALGUIER",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/075.pdf"
+    "Categorie": "Archéologie",
+    "Objet": "Fouilles",
+    "Auteur": "Louis LATOUR",
+    "Titre": "FOUILLES (LES) GALLO-ROMAINES D'AUTERIVE ETUDE DES COUCHES LES PLUS RECENTES",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/001.pdf"
+  },
+  {
+    "Categorie": "Archéologie",
+    "Objet": "Fouilles",
+    "Auteur": "Vincent GENEVIÈVE",
+    "Titre": "MONNAIES (LES) JULIO-CLAUDIENNES DU SITE DU PURGATOIRE À AUTERIVE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/002.pdf"
+  },
+  {
+    "Categorie": "Archéologie",
+    "Objet": "Fouilles",
+    "Auteur": "Louis LATOUR",
+    "Titre": "LAMPES (LES) À HUILE ANTIQUES D'AUTERIVE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/003.pdf"
+  },
+  {
+    "Categorie": "Architecture",
+    "Objet": "Nouveau Pont",
+    "Auteur": "Raymond-Marie MAURETTE",
+    "Titre": "INAUGURATION DU NOUVEAU PONT RELATION DES CÉRÉMONIES CIVILES ET RELIGIEUSES QUI ONT EU LIEU LE Ier MAI 1832 , POUR LA CÉLÉBRATION DE LA FÊTE. DU ROI DES FRANÇAIS",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/004.pdf"
+  },
+  {
+    "Categorie": "Monuments",
+    "Objet": "Eglises",
+    "Auteur": "",
+    "Titre": "MARBRES (LES) DE CAUNES MARBRIERS ET SCULPTEURS AUX XVIIème & XVIIIème SIÈCLES",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/005.pdf"
+  },
+  {
+    "Categorie": "Archéologie",
+    "Objet": "Fouilles",
+    "Auteur": "L'abbé M.B. CARRIÈRE",
+    "Titre": "CIMETIÈRE (UN) ROMAIN A USTION, A LA MADELEINE, PRÈS D'AUTERIVE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/006.pdf"
+  },
+  {
+    "Categorie": "Archéologie",
+    "Objet": "Fouilles",
+    "Auteur": "Jean PAULIN",
+    "Titre": "FOUILLES DE SAUVETAGE AU LIEU-DIT SAINT PIERRE A AUTERIVE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/007.pdf"
+  },
+  {
+    "Categorie": "Conflits",
+    "Objet": "Croisade des Albigeois",
+    "Auteur": "Roger CAMBOULIVES",
+    "Titre": "BATAILLE DE MURET (12 septembre 1213)",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/008.pdf"
+  },
+  {
+    "Categorie": "Archéologie",
+    "Objet": "Fouilles",
+    "Auteur": "Louis MEDOC Georges SAVES Claude TRICHE",
+    "Titre": "TRÉSOR (LE) DE MONNAIES GAULOISES A \"LA CROIX\" D'AUTERIVE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/009.pdf"
+  },
+  {
+    "Categorie": "Monuments",
+    "Objet": "Eglises",
+    "Auteur": "Victor ALLEGRE",
+    "Titre": "CARACTERES GÉNÉRAUX DES VIEILLES EGLISES DU LAURAGAIS",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/010.pdf"
+  },
+  {
+    "Categorie": "Population",
+    "Objet": "Autour d'Auterive",
+    "Auteur": "Philippe WOLFF",
+    "Titre": "VILLES ET CAMPAGNES DANS LE MIDI FRANÇAIS MÉDIÉVAL",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/011.pdf"
+  },
+  {
+    "Categorie": "Archéologie",
+    "Objet": "Fouilles",
+    "Auteur": "Hélène  GUIRAUD",
+    "Titre": "IMAGES DE PROPAGANDE SUR DES INTAILLES À L'ÉPOQUE AUGUSTÉENNE EN GAULE À PROPOS D'UNE INTAILLE D'AUTERIVE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/012.pdf"
   },
   {
     "Categorie": "Archéologie",
@@ -14,46 +91,60 @@
     "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/013.pdf"
   },
   {
-    "Categorie": "Population",
-    "Objet": "Autour d'Auterive",
-    "Auteur": "G. DOTTIN",
-    "Titre": "ANCIENS PEUPLES DE L'EUROPE : LES LIGURES, LES CELTES, LES GAULOIS",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/026.pdf"
+    "Categorie": "Economie",
+    "Objet": "Industrie",
+    "Auteur": "Jean-Michel MINOVEZ",
+    "Titre": "MANUFACTURES (LES) ROYALES DE DRAPS FINS DU MIDI TOULOUSAIN ET LEURS ENTREPRENEURS AU XVIIIème SIÈCLE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/014.pdf"
+  },
+  {
+    "Categorie": "Economie",
+    "Objet": "Ysalguier",
+    "Auteur": "Philippe WOLFF",
+    "Titre": "FORTUNE (LA) FONCIÈRE D'UN SEIGNEUR TOULOUSAIN AU MILIEU DU XVème SIÈCLE (YSALGUIER)",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/015.pdf"
   },
   {
     "Categorie": "Population",
     "Objet": "Autour d'Auterive",
-    "Auteur": "Pierre LÉOUTRE",
-    "Titre": "ANTIQUITÉ (L')  GALLO-ROMAINE EN HAUTE-GARONNE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/069.pdf"
+    "Auteur": "Jean COPPOLANI",
+    "Titre": "MIGRATIONS (LES) ALTERNANTES VERS TOULOUSE EN 1954 & 1962",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/016.pdf"
   },
   {
-    "Categorie": "Monuments",
+    "Categorie": "Population",
     "Objet": "Auterive",
-    "Auteur": "Louis LATOUR",
-    "Titre": "APPUI (L') DE COMMUNION DE L'ÉGLISE SAINT-PAUL D'AUTERIVE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/054.pdf"
+    "Auteur": "Daniel FAUDRY",
+    "Titre": "EXODE RURAL ET TRANSFORMATION DES  CAMPAGNES ET MIGRANTS RURAUX À AUTERIVE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/017.pdf"
   },
   {
-    "Categorie": "Conflits",
-    "Objet": "Guerre d'Espagne",
-    "Auteur": "Jean ODOL",
-    "Titre": "ARMEE (L') ANGLAISE EN LAURAGAIS  (PRINTEMPS 1814)",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/045.pdf"
+    "Categorie": "Economie",
+    "Objet": "Autour d'Auterive",
+    "Auteur": "Georges JORRÉ",
+    "Titre": "RAMIÈRE DE FORTANIER (LIEUTENANT JEAN) : CHARTES DE FRANCHISES DU LAURAGAIS",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/018.pdf"
   },
   {
-    "Categorie": "Conflits",
-    "Objet": "Révolution (la)",
-    "Auteur": "Pierre GÉRARD",
-    "Titre": "ARMEE (L') REVOLUTIONNAIRE DE LA HAUTE-GARONNE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/062.pdf"
+    "Categorie": "Archéologie",
+    "Objet": "Fouilles",
+    "Auteur": "Georges DEPEYROT",
+    "Titre": "TROIS DOCUMENTS SUR LES TRÉSORS DES MONNAIES À \"LA CROIX\" D'AUTERIVE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/019.pdf"
   },
   {
-    "Categorie": "Généralités",
-    "Objet": "Auterive",
-    "Auteur": "---",
-    "Titre": "ARMOIRIE D'AUTERIVE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/089.pdf"
+    "Categorie": "Population",
+    "Objet": "Autour d'Auterive",
+    "Auteur": "Monique LEFEBVRE",
+    "Titre": "ECHANGES MIGRATOIRES ENTRE UNE VILLE ET SON ENVIRONNEMENT RURAL. EVOLUTION 1962-1975 DES VILLES DU SUD-OUEST DE LA FRANCE.",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/020.pdf"
+  },
+  {
+    "Categorie": "Economie",
+    "Objet": "Autour d'Auterive",
+    "Auteur": "Thierry LEFEBVRE",
+    "Titre": "PUBLICITÉ (UNE) MURALE POUR LE CHOCOLAT YO-YO (R 229 PEINTURES MURALES ET PUBLICITÉS PHARMACEUTIQUES)",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/021.pdf"
   },
   {
     "Categorie": "Art",
@@ -63,11 +154,235 @@
     "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/022.pdf"
   },
   {
+    "Categorie": "Conflits",
+    "Objet": "Révolution (la)",
+    "Auteur": "Jean COPPOLANI",
+    "Titre": "REVOLUTION (LA) DANS UNE PETITE VILLE DU PAYS TOULOUSAIN",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/023.pdf"
+  },
+  {
+    "Categorie": "Environnement",
+    "Objet": "Ariège (l')",
+    "Auteur": "Lucien GORON",
+    "Titre": "VALLUMS (LES) MORAINIQUES ET LES TERRASSES DES DERNIÈRES GLACIATIONS DANS LA RÉGION PRÉPYRÉNÉENNE ET SON AVANT-PAYS",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/024.pdf"
+  },
+  {
+    "Categorie": "Art",
+    "Objet": "Auterive",
+    "Auteur": "Jacotin de ROSIERE",
+    "Titre": "PEINTRE (LE) ANTOINE LA PENNE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/025.pdf"
+  },
+  {
+    "Categorie": "Population",
+    "Objet": "Autour d'Auterive",
+    "Auteur": "G. DOTTIN",
+    "Titre": "ANCIENS PEUPLES DE L'EUROPE : LES LIGURES, LES CELTES, LES GAULOIS",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/026.pdf"
+  },
+  {
+    "Categorie": "Célébrité",
+    "Objet": "Industrie",
+    "Auteur": "Henri CADENAT",
+    "Titre": "FIRMIN PONS",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/027.pdf"
+  },
+  {
+    "Categorie": "Economie",
+    "Objet": "Ariège (l')",
+    "Auteur": "Charles HIGOUNET",
+    "Titre": "GÉOGRAPHIE DES PÉAGES DE LA GARONNE ET DE SES AFFLUENTS AU MOYEN ÂGE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/028.pdf"
+  },
+  {
+    "Categorie": "Transports",
+    "Objet": "Autour d'Auterive",
+    "Auteur": "Henri TREUILLE",
+    "Titre": "AUTOUR D'UNE VARIANTE DU CHEMIN DE SAINT-JACQUES DE TOULOUSE VERS LE HAUT COMMINGES",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/029.pdf"
+  },
+  {
+    "Categorie": "Economie",
+    "Objet": "Ariège (l')",
+    "Auteur": "Jean-Michel MINOVEZ",
+    "Titre": "GRANDEUR ET DÉCADENCE DE LA NAVIGATION FLUVIALE : L'EXEMPLE DU BASSIN SUPÉRIEUR DE LA GARONNE DU MILIEU DU XVIIème AU MILIEU DU XIXème SIÈCLE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/030.pdf"
+  },
+  {
+    "Categorie": "Economie",
+    "Objet": "Autour d'Auterive",
+    "Auteur": "Judicaël PETRTOWISTE",
+    "Titre": "INFRASTRUCTURES COMMERCIALES ET DYNAMIQUES DE L’HABITAT DANS LE MIDI TOULOUSAIN DES XIIIème & XIVème SIÈCLES",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/031.pdf"
+  },
+  {
+    "Categorie": "Transports",
+    "Objet": "Autour d'Auterive",
+    "Auteur": "Jean ODOL",
+    "Titre": "SUR LA ROUTE DU SEL AUX XIème & XVème SIECLES",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/032.pdf"
+  },
+  {
+    "Categorie": "Archéologie",
+    "Objet": "Fouilles",
+    "Auteur": "Louis LATOUR",
+    "Titre": "FOUILLES (LES) GALLO-ROMAINES D'AUTERIVE - ETUDE DES COUCHES ANCIENNES",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/033.pdf"
+  },
+  {
+    "Categorie": "Généralités",
+    "Objet": "Ariège (l')",
+    "Auteur": "Jean PAULIN",
+    "Titre": "GUES (LES) D'AUTERIVE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/034.pdf"
+  },
+  {
+    "Categorie": "Célébrité",
+    "Objet": "Ysalguier",
+    "Auteur": "Philippe WOLFF",
+    "Titre": "FAMILLE (UNE) DU XIIIème au XVIème SIÈCLE : LES YSALGUIER DE TOULOUSE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/035.pdf"
+  },
+  {
+    "Categorie": "Environnement",
+    "Objet": "Autour d'Auterive",
+    "Auteur": "Jean ODOL",
+    "Titre": "VENT (LE) D'AUTAN",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/036.pdf"
+  },
+  {
+    "Categorie": "Monuments",
+    "Objet": "Eglises",
+    "Auteur": "Louis LATOUR",
+    "Titre": "RECHERCHES CAMPANAIRES : LA CLOCHE ANCIENNE D'AUTERIVE ET LA CLOCHE DISPARUE DE BEAUMONT-SUR-LÈZE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/037.pdf"
+  },
+  {
+    "Categorie": "Architecture",
+    "Objet": "Castrum",
+    "Auteur": "Louis LATOUR",
+    "Titre": "CASTRUM (LE) D'AUTERIVE, SES ORIGINES, SON HISTOIRE, SES FORTIFICATIONS",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/038.pdf"
+  },
+  {
+    "Categorie": "Population",
+    "Objet": "Autour d'Auterive",
+    "Auteur": "Louis LATOUR",
+    "Titre": "QUELQUES NOTES CONCERNANT LES DROITS FÉODAUX ET SEIGNEURIAUX EN LAURAGAIS, SOUS L'ANCIEN RÉGIME",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/039.pdf"
+  },
+  {
     "Categorie": "Généralités",
     "Objet": "Auterive",
+    "Auteur": "ESCAZAUX",
+    "Titre": "MONOGRAPHIE AUTERIVE QUARTIER SAINT PAUL - 1885",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/040.pdf"
+  },
+  {
+    "Categorie": "Généralités",
+    "Objet": "Auterive",
+    "Auteur": "Léopold MAYRAC",
+    "Titre": "MONOGRAPHIE AUTERIVE QUARTIER MADELEINE - 1887",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/041.pdf"
+  },
+  {
+    "Categorie": "Religion",
+    "Objet": "Eglises",
+    "Auteur": "Frédéric MONDOUIS",
+    "Titre": "NOTRE-DAME DU CHÂTEAU : LÉGENDES AUTERIVAINES",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/042.pdf"
+  },
+  {
+    "Categorie": "Généralités",
+    "Objet": "Autour d'Auterive",
+    "Auteur": "Henri PÉRÈS",
+    "Titre": "GREPIAC VILLAGE DU MIDI TOULOUSAIN",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/043.pdf"
+  },
+  {
+    "Categorie": "Conflits",
+    "Objet": "Révolution (la)",
+    "Auteur": "Jean ODOL",
+    "Titre": "INSURRECTION (L') ROYALISTE EN LAURAGAIS AOUT - SEPTEMBRE 1799",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/044.pdf"
+  },
+  {
+    "Categorie": "Conflits",
+    "Objet": "Guerre d'Espagne",
+    "Auteur": "Jean ODOL",
+    "Titre": "ARMEE (L') ANGLAISE EN LAURAGAIS  (PRINTEMPS 1814)",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/045.pdf"
+  },
+  {
+    "Categorie": "Population",
+    "Objet": "Autour d'Auterive",
+    "Auteur": "Jean ODOL",
+    "Titre": "LAURAGAIS (LE) DE L'AN 1000",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/046.pdf"
+  },
+  {
+    "Categorie": "Religion",
+    "Objet": "Autour d'Auterive",
+    "Auteur": "Jean ODOL",
+    "Titre": "LAURAGAIS (LE) BERCEAU DU CATHARISME OCCITAN - 1167",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/047.pdf"
+  },
+  {
+    "Categorie": "Généralités",
+    "Objet": "Autour d'Auterive",
+    "Auteur": "Henri PÉRÈS",
+    "Titre": "LETTRE A JEAN-PIERRE DUPRAT ECUYER DE GREPIAC",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/048.pdf"
+  },
+  {
+    "Categorie": "Généralités",
+    "Objet": "Autour d'Auterive",
+    "Auteur": "Jean-Loup ABBÉ",
+    "Titre": "NAISSANCE (LA) ET LE DEVELOPPEMENT DES VILLAGES DE LA HAUTE GARONNE AU MOYEN AGE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/049.pdf"
+  },
+  {
+    "Categorie": "Généralités",
+    "Objet": "Autour d'Auterive",
     "Auteur": "Louis LATOUR",
-    "Titre": "AUTERIVE A TRAVERS L'HISTOIRE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/099.pdf"
+    "Titre": "LABRUYÈRE-DORSA",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/050.pdf"
+  },
+  {
+    "Categorie": "Religion",
+    "Objet": "Auterive",
+    "Auteur": "Louis LATOUR",
+    "Titre": "GESTION (LA) ET L'ADMINISTRATION D'UNE CONFRERIE SOUS L'ANCIEN REGIME. VENERABLE CONFRERIE DE LA SAINTE TRINITE ERIGEE EN L'EGLISE PAROISSIALE SAINT-MICHEL-SAINT-PAUL DE LA VILLE D'AUTERIVE.",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/051.pdf"
+  },
+  {
+    "Categorie": "Monuments",
+    "Objet": "Auterive",
+    "Auteur": "Louis LATOUR",
+    "Titre": "COMMUNAUTE (UNE) ET SON ORGUE, TROIS SIECLES D'HISTOIRE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/052.pdf"
+  },
+  {
+    "Categorie": "Monuments",
+    "Objet": "Pont Roman",
+    "Auteur": "Louis LATOUR",
+    "Titre": "GRAND (LE) PONT ROMAN D'AUTERIVE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/053.pdf"
+  },
+  {
+    "Categorie": "Monuments",
+    "Objet": "Auterive",
+    "Auteur": "Louis LATOUR",
+    "Titre": "APPUI (L') DE COMMUNION DE L'ÉGLISE SAINT-PAUL D'AUTERIVE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/054.pdf"
+  },
+  {
+    "Categorie": "Archéologie",
+    "Objet": "Fouilles",
+    "Auteur": "Louis LATOUR",
+    "Titre": "DÉCOUVERTE D'UN PUITS FUNERAIRE A AUTERIVE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/055.pdf"
   },
   {
     "Categorie": "Archéologie",
@@ -77,11 +392,46 @@
     "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/056.pdf"
   },
   {
-    "Categorie": "Transports",
+    "Categorie": "Généralités",
     "Objet": "Autour d'Auterive",
-    "Auteur": "Henri TREUILLE",
-    "Titre": "AUTOUR D'UNE VARIANTE DU CHEMIN DE SAINT-JACQUES DE TOULOUSE VERS LE HAUT COMMINGES",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/029.pdf"
+    "Auteur": "René BORDES",
+    "Titre": "PAYS (LE) DE CINTEGABELLE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/057.pdf"
+  },
+  {
+    "Categorie": "Economie",
+    "Objet": "Auterive",
+    "Auteur": "Robert FOCH",
+    "Titre": "TRAFIC (LE) COMMERCIALE SUR LA GARONNE AU XVIIème SIECLE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/058.pdf"
+  },
+  {
+    "Categorie": "Population",
+    "Objet": "Autour d'Auterive",
+    "Auteur": "Georges FOUET",
+    "Titre": "PYRENEEN (UN) GALLO-ROMAIN EMIGRE EN LAURAGAIS",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/059.pdf"
+  },
+  {
+    "Categorie": "Economie",
+    "Objet": "Autour d'Auterive",
+    "Auteur": "Gilbert FLOUTARD",
+    "Titre": "CRISES (LES) DE SUBSISTANCE DANS LE MIDI TOULOUSAIN AUX XVIIème & XVIIIème SIECLES (VERS 1620-1789)",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/060.pdf"
+  },
+  {
+    "Categorie": "Conflits",
+    "Objet": "Révolution (la)",
+    "Auteur": "Georges FOURNIER",
+    "Titre": "REVOLUTION (LA) DANS LA REGION TOULOUSAINE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/061.pdf"
+  },
+  {
+    "Categorie": "Conflits",
+    "Objet": "Révolution (la)",
+    "Auteur": "Pierre GÉRARD",
+    "Titre": "ARMEE (L') REVOLUTIONNAIRE DE LA HAUTE-GARONNE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/062.pdf"
   },
   {
     "Categorie": "Conflits",
@@ -92,59 +442,24 @@
   },
   {
     "Categorie": "Conflits",
-    "Objet": "Croisade des Albigeois",
-    "Auteur": "Roger CAMBOULIVES",
-    "Titre": "BATAILLE DE MURET (12 septembre 1213)",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/008.pdf"
-  },
-  {
-    "Categorie": "Religion",
-    "Objet": "Autour d'Auterive",
-    "Auteur": "Docteur COLLET",
-    "Titre": "BIOGRAPHIE DE SAINT ROCH",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/076.pdf"
-  },
-  {
-    "Categorie": "Célébrité",
-    "Objet": "Ysalguier",
-    "Auteur": "Jean de SAINT BLANQUAT",
-    "Titre": "CANDIE : LE CHÂTEAU-DÉCOR DES YSALGUIER",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/073.pdf"
-  },
-  {
-    "Categorie": "Monuments",
-    "Objet": "Eglises",
-    "Auteur": "Victor ALLEGRE",
-    "Titre": "CARACTERES GÉNÉRAUX DES VIEILLES EGLISES DU LAURAGAIS",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/010.pdf"
-  },
-  {
-    "Categorie": "Architecture",
-    "Objet": "Castrum",
+    "Objet": "Guerres de religion",
     "Auteur": "Louis LATOUR",
-    "Titre": "CASTRUM (LE) D'AUTERIVE, SES ORIGINES, SON HISTOIRE, SES FORTIFICATIONS",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/038.pdf"
+    "Titre": "SIÈGE (LE) DE MIREMONT",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/064.pdf"
   },
   {
-    "Categorie": "Histoire",
+    "Categorie": "Population",
     "Objet": "Autour d'Auterive",
-    "Auteur": "Abel HUGO",
-    "Titre": "CHÂTEAU FEODAL : VIE, EDUCATION DES VASSEAUX, CONDITION FEMININE ET ESPRIT DE FAMILLE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/104.pdf"
+    "Auteur": "Henri PÉRÈS",
+    "Titre": "GREPIAC : 1680-1690 DIFFICULTÉS ET MALHEURS D'UNE FAMILLE SEIGNEURIALE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/065.pdf"
   },
   {
-    "Categorie": "Archéologie",
-    "Objet": "Fouilles",
-    "Auteur": "L'abbé M.B. CARRIÈRE",
-    "Titre": "CIMETIÈRE (UN) ROMAIN A USTION, A LA MADELEINE, PRÈS D'AUTERIVE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/006.pdf"
-  },
-  {
-    "Categorie": "Monuments",
-    "Objet": "Auterive",
-    "Auteur": "Louis LATOUR",
-    "Titre": "COMMUNAUTE (UNE) ET SON ORGUE, TROIS SIECLES D'HISTOIRE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/052.pdf"
+    "Categorie": "Population",
+    "Objet": "Autour d'Auterive",
+    "Auteur": "Pierre GÉRARD",
+    "Titre": "WISIGOTHS (LES) DANS LE SUD-OUEST",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/066.pdf"
   },
   {
     "Categorie": "Population",
@@ -154,32 +469,270 @@
     "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/067.pdf"
   },
   {
-    "Categorie": "Histoire",
-    "Objet": "Autour d'Auterive",
-    "Auteur": "---",
-    "Titre": "CORPORATIONS DE METIERS AU MOYEN-AGE : ORIGINE, PREMIERES ORGANISATIONS DES ASSOCIATIONS OUVRIERES",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/105.pdf"
-  },
-  {
-    "Categorie": "Economie",
-    "Objet": "Autour d'Auterive",
-    "Auteur": "Gilbert FLOUTARD",
-    "Titre": "CRISES (LES) DE SUBSISTANCE DANS LE MIDI TOULOUSAIN AUX XVIIème & XVIIIème SIECLES (VERS 1620-1789)",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/060.pdf"
-  },
-  {
-    "Categorie": "Archéologie",
-    "Objet": "Fouilles",
-    "Auteur": "Louis LATOUR",
-    "Titre": "DÉCOUVERTE D'UN PUITS FUNERAIRE A AUTERIVE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/055.pdf"
-  },
-  {
     "Categorie": "Généralités",
     "Objet": "Autour d'Auterive",
     "Auteur": "Gilbert FLOUTARD",
     "Titre": "DEVOIRS (LES) DE L'INSTITUTEUR COMMUNAL, IL Y A 150 ANS, EN HAUTE-GARONNE",
     "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/068.pdf"
+  },
+  {
+    "Categorie": "Population",
+    "Objet": "Autour d'Auterive",
+    "Auteur": "Pierre LÉOUTRE",
+    "Titre": "ANTIQUITÉ (L')  GALLO-ROMAINE EN HAUTE-GARONNE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/069.pdf"
+  },
+  {
+    "Categorie": "Population",
+    "Objet": "Autour d'Auterive",
+    "Auteur": "Pierre GÉRARD",
+    "Titre": "TOLÉRANCE ET INTOLÉRANCE À TOULOUSE ET DANS LE MIDI TOULOUSAIN DU XIème au XXème SIÈCLE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/070.pdf"
+  },
+  {
+    "Categorie": "Généralités",
+    "Objet": "Autour d'Auterive",
+    "Auteur": "Jean COPPOLANI",
+    "Titre": "FAIT (LE) COMMUNAL DANS LA BANLIEUE DE TOULOUSE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/071.pdf"
+  },
+  {
+    "Categorie": "Célébrité",
+    "Objet": "Ysalguier",
+    "Auteur": "",
+    "Titre": "HOMMES (LES) ILLUSTRES DE TOULOUSE : LES YSALGUIER",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/072.pdf"
+  },
+  {
+    "Categorie": "Célébrité",
+    "Objet": "Ysalguier",
+    "Auteur": "Jean de SAINT BLANQUAT",
+    "Titre": "CANDIE : LE CHÂTEAU-DÉCOR DES YSALGUIER",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/073.pdf"
+  },
+  {
+    "Categorie": "Célébrité",
+    "Objet": "Ysalguier",
+    "Auteur": "Philippe WOLFF",
+    "Titre": "VIEILLE (UNE) FAMILLE DE TOULOUSE : LES YSALGUIER.",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/074.pdf"
+  },
+  {
+    "Categorie": "Célébrité",
+    "Objet": "Ysalguier",
+    "Auteur": "Christian ISALGUIER",
+    "Titre": "ÂGE (L')  D'OR DES YSALGUIER",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/075.pdf"
+  },
+  {
+    "Categorie": "Religion",
+    "Objet": "Autour d'Auterive",
+    "Auteur": "Docteur COLLET",
+    "Titre": "BIOGRAPHIE DE SAINT ROCH",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/076.pdf"
+  },
+  {
+    "Categorie": "Généralités",
+    "Objet": "Auterive",
+    "Auteur": "Jean Marc DAVID",
+    "Titre": "PRINCIPALES DATES DE L'HISTOIRE D'AUTERIVE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/077.pdf"
+  },
+  {
+    "Categorie": "Célébrité",
+    "Objet": "Ysalguier",
+    "Auteur": "Mme CABANIS",
+    "Titre": "HAUTS ET BAS DES SEIGNEURS DE PINSAGUEL, NOTABLES TOULOUSAINS",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/078.pdf"
+  },
+  {
+    "Categorie": "Célébrité",
+    "Objet": "Ysalguier",
+    "Auteur": "",
+    "Titre": "HÔTEL DES YSALGUIER",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/079.pdf"
+  },
+  {
+    "Categorie": "Célébrité",
+    "Objet": "Ysalguier",
+    "Auteur": "Etienne PATTOU",
+    "Titre": "FAMILLE YSALGUIER ALIAS ISALGUIER, IZALGUIER",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/080.pdf"
+  },
+  {
+    "Categorie": "Economie",
+    "Objet": "Auterive",
+    "Auteur": "---",
+    "Titre": "FOIRES ET MARCHÉS D'AUTERIVE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/081.pdf"
+  },
+  {
+    "Categorie": "Monuments",
+    "Objet": "Auterive",
+    "Auteur": "---",
+    "Titre": "HALLE (LA)",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/082.pdf"
+  },
+  {
+    "Categorie": "Archéologie",
+    "Objet": "Fouilles",
+    "Auteur": "Casimir BARRIERE-FLAVY",
+    "Titre": "VESTIGES HISTORIQUES À AUTERIVE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/083.pdf"
+  },
+  {
+    "Categorie": "Architecture",
+    "Objet": "Auterive",
+    "Auteur": "Casimir BARRIERE-FLAVY",
+    "Titre": "VIEILLES MAISONS D'AUTERIVE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/084.pdf"
+  },
+  {
+    "Categorie": "Economie",
+    "Objet": "Industrie",
+    "Auteur": "Louis LATOUR",
+    "Titre": "RECHERCHES SUR LES MOULINS D'AUTERIVE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/085.pdf"
+  },
+  {
+    "Categorie": "Histoire",
+    "Objet": "Ariège (l')",
+    "Auteur": "Léopold MAYRAC",
+    "Titre": "INONDATION DE 1875",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/086.pdf"
+  },
+  {
+    "Categorie": "Economie",
+    "Objet": "Ariège (l')",
+    "Auteur": "Léopold MAYRAC",
+    "Titre": "MARINIERS (LES) D'AUTERIVE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/087.pdf"
+  },
+  {
+    "Categorie": "Généralités",
+    "Objet": "Auterive",
+    "Auteur": "---",
+    "Titre": "ETYMOLOGIE DE AUTERIVE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/088.pdf"
+  },
+  {
+    "Categorie": "Généralités",
+    "Objet": "Auterive",
+    "Auteur": "---",
+    "Titre": "ARMOIRIE D'AUTERIVE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/089.pdf"
+  },
+  {
+    "Categorie": "Généralités",
+    "Objet": "Auterive",
+    "Auteur": "Louis LATOUR",
+    "Titre": "HISTOIRE (L') D'AUTERIVE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/090.pdf"
+  },
+  {
+    "Categorie": "Archéologie",
+    "Objet": "Fouilles",
+    "Auteur": "---",
+    "Titre": "FOUILLES (LES) GALLO-ROMAINES D'AUTERIVE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/091.pdf"
+  },
+  {
+    "Categorie": "Archéologie",
+    "Objet": "Fouilles",
+    "Auteur": "---",
+    "Titre": "VESTIGES HISTORIQUES A AUTERIVE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/092.pdf"
+  },
+  {
+    "Categorie": "Monuments",
+    "Objet": "Auterive",
+    "Auteur": "Nicole RISBEC",
+    "Titre": "MAIRIE (LA)",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/093.pdf"
+  },
+  {
+    "Categorie": "Monuments",
+    "Objet": "Auterive",
+    "Auteur": "---",
+    "Titre": "LEPROSERIE D'AUTERIVE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/094.pdf"
+  },
+  {
+    "Categorie": "Religion",
+    "Objet": "Auterive",
+    "Auteur": "A. BOSQUET",
+    "Titre": "MONASTERE (LE)  DES CLARISSES",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/095.pdf"
+  },
+  {
+    "Categorie": "Monuments",
+    "Objet": "Eglises",
+    "Auteur": "Casimir BARRIERE-FLAVY",
+    "Titre": "EGLISE DE LA MADELEINE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/096.pdf"
+  },
+  {
+    "Categorie": "Religion",
+    "Objet": "Eglises",
+    "Auteur": "Louis LATOUR",
+    "Titre": "NOTRE-DAME DU CHÂTEAU",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/097.pdf"
+  },
+  {
+    "Categorie": "Célébrité",
+    "Objet": "Ysalguier",
+    "Auteur": "Jean Marc DAVID",
+    "Titre": "MAIS QUI ETAIENT CES YSALGUIER ?",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/098.pdf"
+  },
+  {
+    "Categorie": "Généralités",
+    "Objet": "Auterive",
+    "Auteur": "Louis LATOUR",
+    "Titre": "AUTERIVE A TRAVERS L'HISTOIRE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/099.pdf"
+  },
+  {
+    "Categorie": "Conflits",
+    "Objet": "Révolution (la)",
+    "Auteur": "Jean COPPOLANI",
+    "Titre": "REVOLUTION (LA) DANS UNE PETITE VILLE DU PAYS TOULOUSAIN - AUTERIVE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/100.pdf"
+  },
+  {
+    "Categorie": "Généralités",
+    "Objet": "Auterive",
+    "Auteur": "Les Allumés de St Paul",
+    "Titre": "GAZETTE (LA)  DES REMPARTS",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/101.pdf"
+  },
+  {
+    "Categorie": "Célébrité",
+    "Objet": "Ysalguier",
+    "Auteur": "---",
+    "Titre": "RAYMOND YSALGUIER",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/102.pdf"
+  },
+  {
+    "Categorie": "Généralités",
+    "Objet": "Autour d'Auterive",
+    "Auteur": "---",
+    "Titre": "ORIGINE ET HISTOIRE DU DEPARTEMENT DE LA HAUTE GARONNE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/103.pdf"
+  },
+  {
+    "Categorie": "Histoire",
+    "Objet": "Autour d'Auterive",
+    "Auteur": "Abel HUGO",
+    "Titre": "CHÂTEAU FEODAL : VIE, EDUCATION DES VASSEAUX, CONDITION FEMININE ET ESPRIT DE FAMILLE",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/104.pdf"
+  },
+  {
+    "Categorie": "Histoire",
+    "Objet": "Autour d'Auterive",
+    "Auteur": "---",
+    "Titre": "CORPORATIONS DE METIERS AU MOYEN-AGE : ORIGINE, PREMIERES ORGANISATIONS DES ASSOCIATIONS OUVRIERES",
+    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/105.pdf"
   },
   {
     "Categorie": "Histoire",
@@ -194,558 +747,5 @@
     "Auteur": "---",
     "Titre": "DROITS ET USAGES RELATIFS AUX PONTS AU MOYEN-AGE",
     "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/107.pdf"
-  },
-  {
-    "Categorie": "Population",
-    "Objet": "Autour d'Auterive",
-    "Auteur": "Monique LEFEBVRE",
-    "Titre": "ECHANGES MIGRATOIRES ENTRE UNE VILLE ET SON ENVIRONNEMENT RURAL. EVOLUTION 1962-1975 DES VILLES DU SUD-OUEST DE LA FRANCE.",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/020.pdf"
-  },
-  {
-    "Categorie": "Monuments",
-    "Objet": "Eglises",
-    "Auteur": "Casimir BARRIERE-FLAVY",
-    "Titre": "EGLISE DE LA MADELEINE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/096.pdf"
-  },
-  {
-    "Categorie": "Généralités",
-    "Objet": "Auterive",
-    "Auteur": "---",
-    "Titre": "ETYMOLOGIE DE AUTERIVE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/088.pdf"
-  },
-  {
-    "Categorie": "Population",
-    "Objet": "Auterive",
-    "Auteur": "Daniel FAUDRY",
-    "Titre": "EXODE RURAL ET TRANSFORMATION DES  CAMPAGNES ET MIGRANTS RURAUX À AUTERIVE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/017.pdf"
-  },
-  {
-    "Categorie": "Généralités",
-    "Objet": "Autour d'Auterive",
-    "Auteur": "Jean COPPOLANI",
-    "Titre": "FAIT (LE) COMMUNAL DANS LA BANLIEUE DE TOULOUSE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/071.pdf"
-  },
-  {
-    "Categorie": "Célébrité",
-    "Objet": "Ysalguier",
-    "Auteur": "Philippe WOLFF",
-    "Titre": "FAMILLE (UNE) DU XIIIème au XVIème SIÈCLE : LES YSALGUIER DE TOULOUSE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/035.pdf"
-  },
-  {
-    "Categorie": "Célébrité",
-    "Objet": "Ysalguier",
-    "Auteur": "Etienne PATTOU",
-    "Titre": "FAMILLE YSALGUIER ALIAS ISALGUIER, IZALGUIER",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/080.pdf"
-  },
-  {
-    "Categorie": "Célébrité",
-    "Objet": "Industrie",
-    "Auteur": "Henri CADENAT",
-    "Titre": "FIRMIN PONS",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/027.pdf"
-  },
-  {
-    "Categorie": "Economie",
-    "Objet": "Auterive",
-    "Auteur": "---",
-    "Titre": "FOIRES ET MARCHÉS D'AUTERIVE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/081.pdf"
-  },
-  {
-    "Categorie": "Economie",
-    "Objet": "Ysalguier",
-    "Auteur": "Philippe WOLFF",
-    "Titre": "FORTUNE (LA) FONCIÈRE D'UN SEIGNEUR TOULOUSAIN AU MILIEU DU XVème SIÈCLE (YSALGUIER)",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/015.pdf"
-  },
-  {
-    "Categorie": "Archéologie",
-    "Objet": "Fouilles",
-    "Auteur": "---",
-    "Titre": "FOUILLES (LES) GALLO-ROMAINES D'AUTERIVE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/091.pdf"
-  },
-  {
-    "Categorie": "Archéologie",
-    "Objet": "Fouilles",
-    "Auteur": "Louis LATOUR",
-    "Titre": "FOUILLES (LES) GALLO-ROMAINES D'AUTERIVE - ETUDE DES COUCHES ANCIENNES",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/033.pdf"
-  },
-  {
-    "Categorie": "Archéologie",
-    "Objet": "Fouilles",
-    "Auteur": "Louis LATOUR",
-    "Titre": "FOUILLES (LES) GALLO-ROMAINES D'AUTERIVE ETUDE DES COUCHES LES PLUS RECENTES",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/001.pdf"
-  },
-  {
-    "Categorie": "Archéologie",
-    "Objet": "Fouilles",
-    "Auteur": "Jean PAULIN",
-    "Titre": "FOUILLES DE SAUVETAGE AU LIEU-DIT SAINT PIERRE A AUTERIVE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/007.pdf"
-  },
-  {
-    "Categorie": "Généralités",
-    "Objet": "Auterive",
-    "Auteur": "Les Allumés de St Paul",
-    "Titre": "GAZETTE (LA)  DES REMPARTS",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/101.pdf"
-  },
-  {
-    "Categorie": "Economie",
-    "Objet": "Ariège (l')",
-    "Auteur": "Charles HIGOUNET",
-    "Titre": "GÉOGRAPHIE DES PÉAGES DE LA GARONNE ET DE SES AFFLUENTS AU MOYEN ÂGE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/028.pdf"
-  },
-  {
-    "Categorie": "Religion",
-    "Objet": "Auterive",
-    "Auteur": "Louis LATOUR",
-    "Titre": "GESTION (LA) ET L'ADMINISTRATION D'UNE CONFRERIE SOUS L'ANCIEN REGIME. VENERABLE CONFRERIE DE LA SAINTE TRINITE ERIGEE EN L'EGLISE PAROISSIALE SAINT-MICHEL-SAINT-PAUL DE LA VILLE D'AUTERIVE.",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/051.pdf"
-  },
-  {
-    "Categorie": "Monuments",
-    "Objet": "Pont Roman",
-    "Auteur": "Louis LATOUR",
-    "Titre": "GRAND (LE) PONT ROMAN D'AUTERIVE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/053.pdf"
-  },
-  {
-    "Categorie": "Economie",
-    "Objet": "Ariège (l')",
-    "Auteur": "Jean-Michel MINOVEZ",
-    "Titre": "GRANDEUR ET DÉCADENCE DE LA NAVIGATION FLUVIALE : L'EXEMPLE DU BASSIN SUPÉRIEUR DE LA GARONNE DU MILIEU DU XVIIème AU MILIEU DU XIXème SIÈCLE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/030.pdf"
-  },
-  {
-    "Categorie": "Population",
-    "Objet": "Autour d'Auterive",
-    "Auteur": "Henri PÉRÈS",
-    "Titre": "GREPIAC : 1680-1690 DIFFICULTÉS ET MALHEURS D'UNE FAMILLE SEIGNEURIALE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/065.pdf"
-  },
-  {
-    "Categorie": "Généralités",
-    "Objet": "Autour d'Auterive",
-    "Auteur": "Henri PÉRÈS",
-    "Titre": "GREPIAC VILLAGE DU MIDI TOULOUSAIN",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/043.pdf"
-  },
-  {
-    "Categorie": "Généralités",
-    "Objet": "Ariège (l')",
-    "Auteur": "Jean PAULIN",
-    "Titre": "GUES (LES) D'AUTERIVE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/034.pdf"
-  },
-  {
-    "Categorie": "Monuments",
-    "Objet": "Auterive",
-    "Auteur": "---",
-    "Titre": "HALLE (LA)",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/082.pdf"
-  },
-  {
-    "Categorie": "Célébrité",
-    "Objet": "Ysalguier",
-    "Auteur": "Mme CABANIS",
-    "Titre": "HAUTS ET BAS DES SEIGNEURS DE PINSAGUEL, NOTABLES TOULOUSAINS",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/078.pdf"
-  },
-  {
-    "Categorie": "Généralités",
-    "Objet": "Auterive",
-    "Auteur": "Louis LATOUR",
-    "Titre": "HISTOIRE (L') D'AUTERIVE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/090.pdf"
-  },
-  {
-    "Categorie": "Célébrité",
-    "Objet": "Ysalguier",
-    "Auteur": "",
-    "Titre": "HOMMES (LES) ILLUSTRES DE TOULOUSE : LES YSALGUIER",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/072.pdf"
-  },
-  {
-    "Categorie": "Célébrité",
-    "Objet": "Ysalguier",
-    "Auteur": "",
-    "Titre": "HÔTEL DES YSALGUIER",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/079.pdf"
-  },
-  {
-    "Categorie": "Archéologie",
-    "Objet": "Fouilles",
-    "Auteur": "Hélène  GUIRAUD",
-    "Titre": "IMAGES DE PROPAGANDE SUR DES INTAILLES À L'ÉPOQUE AUGUSTÉENNE EN GAULE À PROPOS D'UNE INTAILLE D'AUTERIVE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/012.pdf"
-  },
-  {
-    "Categorie": "Architecture",
-    "Objet": "Nouveau Pont",
-    "Auteur": "Raymond-Marie MAURETTE",
-    "Titre": "INAUGURATION DU NOUVEAU PONT RELATION DES CÉRÉMONIES CIVILES ET RELIGIEUSES QUI ONT EU LIEU LE Ier MAI 1832 , POUR LA CÉLÉBRATION DE LA FÊTE. DU ROI DES FRANÇAIS",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/004.pdf"
-  },
-  {
-    "Categorie": "Economie",
-    "Objet": "Autour d'Auterive",
-    "Auteur": "Judicaël PETRTOWISTE",
-    "Titre": "INFRASTRUCTURES COMMERCIALES ET DYNAMIQUES DE L’HABITAT DANS LE MIDI TOULOUSAIN DES XIIIème & XIVème SIÈCLES",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/031.pdf"
-  },
-  {
-    "Categorie": "Histoire",
-    "Objet": "Ariège (l')",
-    "Auteur": "Léopold MAYRAC",
-    "Titre": "INONDATION DE 1875",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/086.pdf"
-  },
-  {
-    "Categorie": "Conflits",
-    "Objet": "Révolution (la)",
-    "Auteur": "Jean ODOL",
-    "Titre": "INSURRECTION (L') ROYALISTE EN LAURAGAIS AOUT - SEPTEMBRE 1799",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/044.pdf"
-  },
-  {
-    "Categorie": "Généralités",
-    "Objet": "Autour d'Auterive",
-    "Auteur": "Louis LATOUR",
-    "Titre": "LABRUYÈRE-DORSA",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/050.pdf"
-  },
-  {
-    "Categorie": "Archéologie",
-    "Objet": "Fouilles",
-    "Auteur": "Louis LATOUR",
-    "Titre": "LAMPES (LES) À HUILE ANTIQUES D'AUTERIVE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/003.pdf"
-  },
-  {
-    "Categorie": "Religion",
-    "Objet": "Autour d'Auterive",
-    "Auteur": "Jean ODOL",
-    "Titre": "LAURAGAIS (LE) BERCEAU DU CATHARISME OCCITAN - 1167",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/047.pdf"
-  },
-  {
-    "Categorie": "Population",
-    "Objet": "Autour d'Auterive",
-    "Auteur": "Jean ODOL",
-    "Titre": "LAURAGAIS (LE) DE L'AN 1000",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/046.pdf"
-  },
-  {
-    "Categorie": "Monuments",
-    "Objet": "Auterive",
-    "Auteur": "---",
-    "Titre": "LEPROSERIE D'AUTERIVE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/094.pdf"
-  },
-  {
-    "Categorie": "Généralités",
-    "Objet": "Autour d'Auterive",
-    "Auteur": "Henri PÉRÈS",
-    "Titre": "LETTRE A JEAN-PIERRE DUPRAT ECUYER DE GREPIAC",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/048.pdf"
-  },
-  {
-    "Categorie": "Monuments",
-    "Objet": "Auterive",
-    "Auteur": "Nicole RISBEC",
-    "Titre": "MAIRIE (LA)",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/093.pdf"
-  },
-  {
-    "Categorie": "Célébrité",
-    "Objet": "Ysalguier",
-    "Auteur": "Jean Marc DAVID",
-    "Titre": "MAIS QUI ETAIENT CES YSALGUIER ?",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/098.pdf"
-  },
-  {
-    "Categorie": "Economie",
-    "Objet": "Industrie",
-    "Auteur": "Jean-Michel MINOVEZ",
-    "Titre": "MANUFACTURES (LES) ROYALES DE DRAPS FINS DU MIDI TOULOUSAIN ET LEURS ENTREPRENEURS AU XVIIIème SIÈCLE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/014.pdf"
-  },
-  {
-    "Categorie": "Monuments",
-    "Objet": "Eglises",
-    "Auteur": "",
-    "Titre": "MARBRES (LES) DE CAUNES MARBRIERS ET SCULPTEURS AUX XVIIème & XVIIIème SIÈCLES",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/005.pdf"
-  },
-  {
-    "Categorie": "Economie",
-    "Objet": "Ariège (l')",
-    "Auteur": "Léopold MAYRAC",
-    "Titre": "MARINIERS (LES) D'AUTERIVE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/087.pdf"
-  },
-  {
-    "Categorie": "Population",
-    "Objet": "Autour d'Auterive",
-    "Auteur": "Jean COPPOLANI",
-    "Titre": "MIGRATIONS (LES) ALTERNANTES VERS TOULOUSE EN 1954 & 1962",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/016.pdf"
-  },
-  {
-    "Categorie": "Religion",
-    "Objet": "Auterive",
-    "Auteur": "A. BOSQUET",
-    "Titre": "MONASTERE (LE)  DES CLARISSES",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/095.pdf"
-  },
-  {
-    "Categorie": "Archéologie",
-    "Objet": "Fouilles",
-    "Auteur": "Vincent GENEVIÈVE",
-    "Titre": "MONNAIES (LES) JULIO-CLAUDIENNES DU SITE DU PURGATOIRE À AUTERIVE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/002.pdf"
-  },
-  {
-    "Categorie": "Généralités",
-    "Objet": "Auterive",
-    "Auteur": "Léopold MAYRAC",
-    "Titre": "MONOGRAPHIE AUTERIVE QUARTIER MADELEINE - 1887",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/041.pdf"
-  },
-  {
-    "Categorie": "Généralités",
-    "Objet": "Auterive",
-    "Auteur": "ESCAZAUX",
-    "Titre": "MONOGRAPHIE AUTERIVE QUARTIER SAINT PAUL - 1885",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/040.pdf"
-  },
-  {
-    "Categorie": "Généralités",
-    "Objet": "Autour d'Auterive",
-    "Auteur": "Jean-Loup ABBÉ",
-    "Titre": "NAISSANCE (LA) ET LE DEVELOPPEMENT DES VILLAGES DE LA HAUTE GARONNE AU MOYEN AGE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/049.pdf"
-  },
-  {
-    "Categorie": "Religion",
-    "Objet": "Eglises",
-    "Auteur": "Louis LATOUR",
-    "Titre": "NOTRE-DAME DU CHÂTEAU",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/097.pdf"
-  },
-  {
-    "Categorie": "Religion",
-    "Objet": "Eglises",
-    "Auteur": "Frédéric MONDOUIS",
-    "Titre": "NOTRE-DAME DU CHÂTEAU : LÉGENDES AUTERIVAINES",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/042.pdf"
-  },
-  {
-    "Categorie": "Généralités",
-    "Objet": "Autour d'Auterive",
-    "Auteur": "---",
-    "Titre": "ORIGINE ET HISTOIRE DU DEPARTEMENT DE LA HAUTE GARONNE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/103.pdf"
-  },
-  {
-    "Categorie": "Généralités",
-    "Objet": "Autour d'Auterive",
-    "Auteur": "René BORDES",
-    "Titre": "PAYS (LE) DE CINTEGABELLE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/057.pdf"
-  },
-  {
-    "Categorie": "Art",
-    "Objet": "Auterive",
-    "Auteur": "Jacotin de ROSIERE",
-    "Titre": "PEINTRE (LE) ANTOINE LA PENNE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/025.pdf"
-  },
-  {
-    "Categorie": "Généralités",
-    "Objet": "Auterive",
-    "Auteur": "Jean Marc DAVID",
-    "Titre": "PRINCIPALES DATES DE L'HISTOIRE D'AUTERIVE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/077.pdf"
-  },
-  {
-    "Categorie": "Economie",
-    "Objet": "Autour d'Auterive",
-    "Auteur": "Thierry LEFEBVRE",
-    "Titre": "PUBLICITÉ (UNE) MURALE POUR LE CHOCOLAT YO-YO (R 229 PEINTURES MURALES ET PUBLICITÉS PHARMACEUTIQUES)",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/021.pdf"
-  },
-  {
-    "Categorie": "Population",
-    "Objet": "Autour d'Auterive",
-    "Auteur": "Georges FOUET",
-    "Titre": "PYRENEEN (UN) GALLO-ROMAIN EMIGRE EN LAURAGAIS",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/059.pdf"
-  },
-  {
-    "Categorie": "Population",
-    "Objet": "Autour d'Auterive",
-    "Auteur": "Louis LATOUR",
-    "Titre": "QUELQUES NOTES CONCERNANT LES DROITS FÉODAUX ET SEIGNEURIAUX EN LAURAGAIS, SOUS L'ANCIEN RÉGIME",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/039.pdf"
-  },
-  {
-    "Categorie": "Economie",
-    "Objet": "Autour d'Auterive",
-    "Auteur": "Georges JORRÉ",
-    "Titre": "RAMIÈRE DE FORTANIER (LIEUTENANT JEAN) : CHARTES DE FRANCHISES DU LAURAGAIS",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/018.pdf"
-  },
-  {
-    "Categorie": "Célébrité",
-    "Objet": "Ysalguier",
-    "Auteur": "---",
-    "Titre": "RAYMOND YSALGUIER",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/102.pdf"
-  },
-  {
-    "Categorie": "Monuments",
-    "Objet": "Eglises",
-    "Auteur": "Louis LATOUR",
-    "Titre": "RECHERCHES CAMPANAIRES : LA CLOCHE ANCIENNE D'AUTERIVE ET LA CLOCHE DISPARUE DE BEAUMONT-SUR-LÈZE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/037.pdf"
-  },
-  {
-    "Categorie": "Economie",
-    "Objet": "Industrie",
-    "Auteur": "Louis LATOUR",
-    "Titre": "RECHERCHES SUR LES MOULINS D'AUTERIVE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/085.pdf"
-  },
-  {
-    "Categorie": "Conflits",
-    "Objet": "Révolution (la)",
-    "Auteur": "Georges FOURNIER",
-    "Titre": "REVOLUTION (LA) DANS LA REGION TOULOUSAINE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/061.pdf"
-  },
-  {
-    "Categorie": "Conflits",
-    "Objet": "Révolution (la)",
-    "Auteur": "Jean COPPOLANI",
-    "Titre": "REVOLUTION (LA) DANS UNE PETITE VILLE DU PAYS TOULOUSAIN",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/023.pdf"
-  },
-  {
-    "Categorie": "Conflits",
-    "Objet": "Révolution (la)",
-    "Auteur": "Jean COPPOLANI",
-    "Titre": "REVOLUTION (LA) DANS UNE PETITE VILLE DU PAYS TOULOUSAIN - AUTERIVE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/100.pdf"
-  },
-  {
-    "Categorie": "Conflits",
-    "Objet": "Guerres de religion",
-    "Auteur": "Louis LATOUR",
-    "Titre": "SIÈGE (LE) DE MIREMONT",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/064.pdf"
-  },
-  {
-    "Categorie": "Transports",
-    "Objet": "Autour d'Auterive",
-    "Auteur": "Jean ODOL",
-    "Titre": "SUR LA ROUTE DU SEL AUX XIème & XVème SIECLES",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/032.pdf"
-  },
-  {
-    "Categorie": "Population",
-    "Objet": "Autour d'Auterive",
-    "Auteur": "Pierre GÉRARD",
-    "Titre": "TOLÉRANCE ET INTOLÉRANCE À TOULOUSE ET DANS LE MIDI TOULOUSAIN DU XIème au XXème SIÈCLE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/070.pdf"
-  },
-  {
-    "Categorie": "Economie",
-    "Objet": "Auterive",
-    "Auteur": "Robert FOCH",
-    "Titre": "TRAFIC (LE) COMMERCIALE SUR LA GARONNE AU XVIIème SIECLE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/058.pdf"
-  },
-  {
-    "Categorie": "Archéologie",
-    "Objet": "Fouilles",
-    "Auteur": "Louis MEDOC Georges SAVES Claude TRICHE",
-    "Titre": "TRÉSOR (LE) DE MONNAIES GAULOISES A \"LA CROIX\" D'AUTERIVE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/009.pdf"
-  },
-  {
-    "Categorie": "Archéologie",
-    "Objet": "Fouilles",
-    "Auteur": "Georges DEPEYROT",
-    "Titre": "TROIS DOCUMENTS SUR LES TRÉSORS DES MONNAIES À \"LA CROIX\" D'AUTERIVE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/019.pdf"
-  },
-  {
-    "Categorie": "Environnement",
-    "Objet": "Ariège (l')",
-    "Auteur": "Lucien GORON",
-    "Titre": "VALLUMS (LES) MORAINIQUES ET LES TERRASSES DES DERNIÈRES GLACIATIONS DANS LA RÉGION PRÉPYRÉNÉENNE ET SON AVANT-PAYS",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/024.pdf"
-  },
-  {
-    "Categorie": "Environnement",
-    "Objet": "Autour d'Auterive",
-    "Auteur": "Jean ODOL",
-    "Titre": "VENT (LE) D'AUTAN",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/036.pdf"
-  },
-  {
-    "Categorie": "Archéologie",
-    "Objet": "Fouilles",
-    "Auteur": "---",
-    "Titre": "VESTIGES HISTORIQUES A AUTERIVE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/092.pdf"
-  },
-  {
-    "Categorie": "Archéologie",
-    "Objet": "Fouilles",
-    "Auteur": "Casimir BARRIERE-FLAVY",
-    "Titre": "VESTIGES HISTORIQUES À AUTERIVE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/083.pdf"
-  },
-  {
-    "Categorie": "Célébrité",
-    "Objet": "Ysalguier",
-    "Auteur": "Philippe WOLFF",
-    "Titre": "VIEILLE (UNE) FAMILLE DE TOULOUSE : LES YSALGUIER.",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/074.pdf"
-  },
-  {
-    "Categorie": "Architecture",
-    "Objet": "Auterive",
-    "Auteur": "Casimir BARRIERE-FLAVY",
-    "Titre": "VIEILLES MAISONS D'AUTERIVE",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/084.pdf"
-  },
-  {
-    "Categorie": "Population",
-    "Objet": "Autour d'Auterive",
-    "Auteur": "Philippe WOLFF",
-    "Titre": "VILLES ET CAMPAGNES DANS LE MIDI FRANÇAIS MÉDIÉVAL",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/011.pdf"
-  },
-  {
-    "Categorie": "Population",
-    "Objet": "Autour d'Auterive",
-    "Auteur": "Pierre GÉRARD",
-    "Titre": "WISIGOTHS (LES) DANS LE SUD-OUEST",
-    "Fichier": "https://pub-42f6540411ea4db69dd5ec5a712b47ea.r2.dev/Source/066.pdf"
   }
 ]
