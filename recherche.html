@@ -179,50 +179,35 @@
     });
   }
 
-  // ==== Loader avec durée minimale + fondu ====
-  let haLoaderStart = 0;
-  const HA_MIN_MS = 1000;     // 1 seconde minimum visible
-  const HA_FADE_MS = 300;     // 0,3 s de fondu
+  // ==== Loader forcé : toujours 1s + fondu ====
+  let haLoaderTimer = null;
 
   function haShowLoader(msg){
-    haLoaderStart = Date.now();
     const el = document.getElementById('ha-loader');
     const txt = document.getElementById('ha-msg');
     if (txt) txt.textContent = msg || 'Ouverture de la notice…';
     if (!el) return;
+
+    clearTimeout(haLoaderTimer);
     el.style.display = 'grid';
-    requestAnimationFrame(()=>{ el.style.opacity = '1'; el.style.pointerEvents = 'auto'; });
+    requestAnimationFrame(()=>{
+      el.style.opacity = '1';
+      el.style.pointerEvents = 'auto';
+    });
+
+    // Planifie la fermeture après 1s + fondu
+    haLoaderTimer = setTimeout(()=>{
+      el.style.opacity = '0';
+      el.style.pointerEvents = 'none';
+      setTimeout(()=>{ el.style.display = 'none'; }, 300); // 300ms = durée du fondu
+    }, 1000); // 1000ms = affichage forcé
   }
 
   function haHideLoader(){
-    const el = document.getElementById('ha-loader');
-    if (!el) return;
-    const elapsed = Date.now() - haLoaderStart;
-    const wait = Math.max(0, HA_MIN_MS - elapsed);
-    setTimeout(()=>{
-      el.style.opacity = '0';
-      el.style.pointerEvents = 'none';
-      setTimeout(()=>{ el.style.display = 'none'; }, HA_FADE_MS);
-    }, wait);
+    // plus utilisé : la fermeture est automatique
   }
 
-  // On cache le loader quand on revient sur l'onglet
-  window.addEventListener('focus', haHideLoader);
-  document.addEventListener('visibilitychange', ()=>{
-    if (document.visibilityState === 'visible') haHideLoader();
-  });
-
-  // Réveil discret : on n'affiche JAMAIS d'alerte, on tente juste une requête "no-cors"
-  async function warmupSilent(url){
-    try {
-      // Beaucoup d'hébergements bloquent HEAD/CORS.
-      // 'no-cors' renvoie une réponse "opaque" mais suffit à chauffer le cache.
-      await fetch(url, { method:'HEAD', mode:'no-cors' });
-    } catch(e){
-      // On ignore les erreurs : l'ouverture directe fonctionne de toute façon.
-    }
-  }
-
+  // Ouverture PDF
   function drawResults(){
     const filtered = filterAll();
     populateSelects(filtered);
@@ -242,17 +227,13 @@
       p.textContent = getField(n,"Titre") || "(Sans titre)";
 
       const url = getNoticeUrl(n);
-      p.addEventListener("click", async ()=>{
+      p.addEventListener("click", ()=>{
         if (!url){
           alert("Aucun lien disponible pour cette notice.");
           return;
         }
         haShowLoader('Préparation du document…');
-        // On tente un réveil silencieux (sans bloquer l'ouverture du PDF)
-        warmupSilent(url);
-        // On ouvre immédiatement dans un nouvel onglet
         window.open(url, "_blank", "noopener");
-        // Le loader se fermera automatiquement quand vous reviendrez sur la page
       });
 
       box.appendChild(p);
@@ -337,7 +318,7 @@
 })();
 </script>
 
-<!-- Écran d’attente (masque) -->
+<!-- Écran d’attente -->
 <div id="ha-loader" style="
   position:fixed;
   inset:0;
