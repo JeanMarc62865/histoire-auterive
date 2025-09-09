@@ -207,7 +207,6 @@
     // plus utilisé : la fermeture est automatique
   }
 
-  // Ouverture PDF
   function drawResults(){
     const filtered = filterAll();
     populateSelects(filtered);
@@ -232,8 +231,10 @@
           alert("Aucun lien disponible pour cette notice.");
           return;
         }
+        // 1) Affiche le loader
         haShowLoader('Préparation du document…');
-        window.open(url, "_blank", "noopener");
+        // 2) Laisse 80 ms au navigateur pour peindre le loader, PUIS ouvre le PDF
+        setTimeout(()=>{ window.open(url, "_blank", "noopener"); }, 80);
       });
 
       box.appendChild(p);
