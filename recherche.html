@@ -179,17 +179,14 @@
     });
   }
 
-  // ==== Ouvrir dans un NOUVEL onglet "loader" puis rediriger vers le PDF ====
+  // ==== Ouvrir un onglet "loader" (1s) puis rediriger vers le PDF, SANS <script> dans la page HTML interne ====
   function openPdfWithLoaderInNewTab(pdfUrl){
-    // 1) Ouvrir un onglet vierge qu'on contrôle (nécessite un clic utilisateur)
     const w = window.open('', '_blank', 'noopener');
     if (!w) {
-      // Si bloqué par le navigateur, on bascule en même onglet (sans loader)
+      // Si le navigateur bloque l'ouverture : on ouvre dans le même onglet (sans loader)
       window.location.href = pdfUrl;
       return;
     }
-
-    // 2) Construire une petite page HTML avec un loader (1s) puis redirection
     const encoded = encodeURIComponent(pdfUrl);
     const html = `
 <!DOCTYPE html>
@@ -198,6 +195,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Ouverture du PDF…</title>
+  <meta http-equiv="refresh" content="1;url=${encoded}">
   <style>
     html,body{height:100%;margin:0}
     body{display:grid;place-items:center;background:#fff;font:16px/1.4 system-ui,Segoe UI,Roboto,Arial;color:#222}
@@ -214,14 +212,8 @@
     <div class="bar"><i></i></div>
     <p class="small">Merci de patienter</p>
   </div>
-  <script>
-    // Redirection après 1000 ms pour laisser le loader visible
-    const target = decodeURIComponent("${encoded}");
-    setTimeout(function(){ location.replace(target); }, 1000);
-  </script>
 </body>
 </html>`;
-    // 3) Écrire la page dans le nouvel onglet, puis laisser faire la redirection
     w.document.open();
     w.document.write(html);
     w.document.close();
@@ -251,7 +243,6 @@
           alert("Aucun lien disponible pour cette notice.");
           return;
         }
-        // Onglet loader (1s) -> PDF
         openPdfWithLoaderInNewTab(url);
       });
 
@@ -339,3 +330,4 @@
 
 </body>
 </html>
+
