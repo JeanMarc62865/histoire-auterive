@@ -179,23 +179,22 @@
     });
   }
 
-  // ==== Ouvrir un onglet "loader" (1s) puis rediriger vers le PDF, SANS <script> dans la page HTML interne ====
+  // ==== Ouverture via URL data: (loader 1s dans le nouvel onglet) ====
   function openPdfWithLoaderInNewTab(pdfUrl){
-    const w = window.open('', '_blank', 'noopener');
-    if (!w) {
-      // Si le navigateur bloque l'ouverture : on ouvre dans le même onglet (sans loader)
-      window.location.href = pdfUrl;
-      return;
-    }
-    const encoded = encodeURIComponent(pdfUrl);
-    const html = `
-<!DOCTYPE html>
+    // Échapper l'URL pour l'injecter dans le HTML (évite les guillemets & co)
+    const target = String(pdfUrl)
+      .replace(/&/g, '&amp;')
+      .replace(/"/g, '&quot;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+
+    const html = `<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Ouverture du PDF…</title>
-  <meta http-equiv="refresh" content="1;url=${encoded}">
+  <meta http-equiv="refresh" content="1;url=${target}">
   <style>
     html,body{height:100%;margin:0}
     body{display:grid;place-items:center;background:#fff;font:16px/1.4 system-ui,Segoe UI,Roboto,Arial;color:#222}
@@ -214,9 +213,14 @@
   </div>
 </body>
 </html>`;
-    w.document.open();
-    w.document.write(html);
-    w.document.close();
+
+    // Construire une URL data: et l'ouvrir — pas de about:blank, pas de document.write
+    const dataUrl = 'data:text/html;charset=utf-8,' + encodeURIComponent(html);
+    const w = window.open(dataUrl, '_blank');
+    if (!w) {
+      // Si le navigateur bloque l'onglet, on ouvre dans le même onglet (sans loader)
+      window.location.href = pdfUrl;
+    }
   }
 
   function drawResults(){
