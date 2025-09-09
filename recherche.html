@@ -179,32 +179,52 @@
     });
   }
 
-  // ==== Loader forcé : toujours 1s + fondu ====
-  let haLoaderTimer = null;
+  // ==== Ouvrir dans un NOUVEL onglet "loader" puis rediriger vers le PDF ====
+  function openPdfWithLoaderInNewTab(pdfUrl){
+    // 1) Ouvrir un onglet vierge qu'on contrôle (nécessite un clic utilisateur)
+    const w = window.open('', '_blank', 'noopener');
+    if (!w) {
+      // Si bloqué par le navigateur, on bascule en même onglet (sans loader)
+      window.location.href = pdfUrl;
+      return;
+    }
 
-  function haShowLoader(msg){
-    const el = document.getElementById('ha-loader');
-    const txt = document.getElementById('ha-msg');
-    if (txt) txt.textContent = msg || 'Ouverture de la notice…';
-    if (!el) return;
-
-    clearTimeout(haLoaderTimer);
-    el.style.display = 'grid';
-    requestAnimationFrame(()=>{
-      el.style.opacity = '1';
-      el.style.pointerEvents = 'auto';
-    });
-
-    // Planifie la fermeture après 1s + fondu
-    haLoaderTimer = setTimeout(()=>{
-      el.style.opacity = '0';
-      el.style.pointerEvents = 'none';
-      setTimeout(()=>{ el.style.display = 'none'; }, 300); // 300ms = durée du fondu
-    }, 1000); // 1000ms = affichage forcé
-  }
-
-  function haHideLoader(){
-    // plus utilisé : la fermeture est automatique
+    // 2) Construire une petite page HTML avec un loader (1s) puis redirection
+    const encoded = encodeURIComponent(pdfUrl);
+    const html = `
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Ouverture du PDF…</title>
+  <style>
+    html,body{height:100%;margin:0}
+    body{display:grid;place-items:center;background:#fff;font:16px/1.4 system-ui,Segoe UI,Roboto,Arial;color:#222}
+    .wrap{width:min(92vw,460px);text-align:center}
+    .bar{height:10px;border-radius:999px;background:#eee;overflow:hidden;margin:.75rem 0}
+    .bar > i{display:block;height:100%;width:30%;background:#68a;transform:translateX(-30%);animation:slide 1.2s ease-in-out infinite}
+    @keyframes slide{0%{transform:translateX(-30%)}50%{transform:translateX(100%)}100%{transform:translateX(-30%)}}
+    .small{color:#666;font-size:14px;margin-top:.25rem}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p style="margin:.2rem 0 .4rem 0;font-weight:600">Ouverture de la notice…</p>
+    <div class="bar"><i></i></div>
+    <p class="small">Merci de patienter</p>
+  </div>
+  <script>
+    // Redirection après 1000 ms pour laisser le loader visible
+    const target = decodeURIComponent("${encoded}");
+    setTimeout(function(){ location.replace(target); }, 1000);
+  </script>
+</body>
+</html>`;
+    // 3) Écrire la page dans le nouvel onglet, puis laisser faire la redirection
+    w.document.open();
+    w.document.write(html);
+    w.document.close();
   }
 
   function drawResults(){
@@ -231,10 +251,8 @@
           alert("Aucun lien disponible pour cette notice.");
           return;
         }
-        // 1) Affiche le loader
-        haShowLoader('Préparation du document…');
-        // 2) Laisse 80 ms au navigateur pour peindre le loader, PUIS ouvre le PDF
-        setTimeout(()=>{ window.open(url, "_blank", "noopener"); }, 80);
+        // Onglet loader (1s) -> PDF
+        openPdfWithLoaderInNewTab(url);
       });
 
       box.appendChild(p);
@@ -319,35 +337,5 @@
 })();
 </script>
 
-<!-- Écran d’attente -->
-<div id="ha-loader" style="
-  position:fixed;
-  inset:0;
-  display:none;
-  place-items:center;
-  background:#fff;
-  z-index:9999;
-  opacity:0;
-  transition:opacity .3s ease;
-  pointer-events:none;
-">
-  <div style="width:min(92vw,420px);font-family:system-ui,Segoe UI,Roboto,Arial;">
-    <p id="ha-msg" style="margin:0 0 10px 0;text-align:center;font-weight:600">Ouverture de la notice…</p>
-    <div style="height:10px;border-radius:999px;background:#eee;overflow:hidden;">
-      <div id="ha-bar" style="height:100%;width:30%;background:#68a;transform:translateX(-30%);animation:haSlide 1.2s ease-in-out infinite;"></div>
-    </div>
-    <p style="margin:10px 0 0 0;text-align:center;color:#666;font-size:14px">Merci de patienter</p>
-  </div>
-</div>
-
-<style>
-@keyframes haSlide {
-  0%   { transform:translateX(-30%); }
-  50%  { transform:translateX(100%); }
-  100% { transform:translateX(-30%); }
-}
-</style>
-
 </body>
 </html>
-
