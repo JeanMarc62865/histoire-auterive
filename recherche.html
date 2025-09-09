@@ -45,7 +45,7 @@
       </div>
     </div>
 
-    <!-- Ligne RAZ + lien contact : bouton centré, lien à droite -->
+    <!-- Ligne RAZ + lien contact -->
     <div class="actions-raz" style="position:relative;">
       <button id="resetBtn" class="btn" type="button">RAZ</button>
       <a href="contact.html" style="position:absolute; right:0; top:50%; transform:translateY(-50%);">Contact / Contribuer</a>
@@ -66,7 +66,7 @@
   <p>&copy; 2025 Histoire d'Auterive · <span id="pv-counter">—</span> <span id="pv-badge" title="État du compteur"></span></p>
 </footer>
 
-<!-- JSON embarqué (facultatif, si besoin) -->
+<!-- JSON embarqué (fallback) -->
 <script id="listing-json" type="application/json">
 [
 ]
@@ -85,7 +85,6 @@
   let notices = [];
 
   async function loadData(){
-    // on force le non-cache avec un timestamp
     try {
       const resp = await fetch('listing.json?ts=' + Date.now(), { cache: 'no-store' });
       if (resp.ok) {
@@ -93,7 +92,6 @@
         if (Array.isArray(data) && data.length) return data;
       }
     } catch(e) { }
-    // fallback éventuel sur le JSON embarqué
     try {
       const raw = document.getElementById("listing-json").textContent;
       const data = JSON.parse(raw);
@@ -114,7 +112,7 @@
       "Objet":     ["Objets","Objet "],
       "Auteur":    ["Auteurs","Auteur "],
       "Titre":     ["Titre "],
-      "Fichier":   ["Fichier "]
+      "Fichier":   ["Fichier ","Lien","URL"]
     };
     const alts = map[key] || [];
     for (const k of alts) if (n[k] != null) return String(n[k]);
@@ -156,15 +154,11 @@
   }
 
   function getNoticeUrl(n){
-    // priorité au lien OneDrive s'il existe
-    const od = n && n["Lien OneDrive"] ? String(n["Lien OneDrive"]).trim() : "";
-    if (od && /^https?:\/\//i.test(od)) return od;
-    // sinon champ "Fichier"
-    const f = getField(n,"Fichier").trim();
-    if (!f) return "";
-    if (/^https?:\/\//i.test(f)) return f;
-    if (/^[a-zA-Z]:\\/.test(f) || f.startsWith("\\\\")) return "";
-    return "Source/" + f.replace(/^Source[\\/]/i,"");
+    const url = (getField(n,"Fichier") || "").trim();
+    if (!url) return "";
+    if (/^https?:\/\//i.test(url)) return url;
+    if (/^[a-zA-Z]:\\/.test(url) || url.startsWith("\\\\")) return "";
+    return "Source/" + url.replace(/^Source[\\/]/i,"");
   }
 
   function filterAll(base=notices){
@@ -185,21 +179,61 @@
     });
   }
 
-  // ==== Loader : reste affiché jusqu'au retour sur l'onglet ====
-  function haShowLoader(){
+  // ==== Loader avec durée minimale + fondu ====
+  let haLoaderStart = 0;
+  const HA_MIN_MS = 1000;     // 1 seconde minimum visible
+  const HA_FADE_MS = 300;     // 0,3 s de fondu
+
+  function haShowLoader(msg){
+    haLoaderStart = Date.now();
     const el = document.getElementById('ha-loader');
-    if (el) el.style.display = 'grid';
+    const txt = document.getElementById('ha-msg');
+    if (txt) txt.textContent = msg || 'Ouverture de la notice…';
+    if (!el) return;
+    el.style.display = 'grid';     // rend visible dans le flux
+    // force le recalcul puis passe l'opacité à 1 pour le fondu d'entrée (si jamais utile)
+    requestAnimationFrame(()=>{ el.style.opacity = '1'; el.style.pointerEvents = 'auto'; });
   }
+
   function haHideLoader(){
     const el = document.getElementById('ha-loader');
-    if (el) el.style.display = 'none';
+    if (!el) return;
+    const elapsed = Date.now() - haLoaderStart;
+    const wait = Math.max(0, HA_MIN_MS - elapsed); // garantit 1 s visible
+    setTimeout(()=>{
+      // lance le fondu
+      el.style.opacity = '0';
+      el.style.pointerEvents = 'none';
+      // après le fondu, on retire du flux
+      setTimeout(()=>{ el.style.display = 'none'; }, HA_FADE_MS);
+    }, wait);
   }
+
+  // Quand on revient sur la page, on cache avec la règle ci-dessus
   window.addEventListener('focus', haHideLoader);
   document.addEventListener('visibilitychange', ()=>{
     if (document.visibilityState === 'visible') haHideLoader();
   });
 
-  // ==== Rendu des résultats (avec passage par la fonction Netlify pour OneDrive) ====
+  async function warmup(url){
+    try {
+      const r = await fetch(url, { method:'HEAD' });
+      if (r.ok) return true;
+      const r2 = await fetch(url, { method:'GET', headers:{ Range:'bytes=0-0' } });
+      return r2.ok;
+    } catch(e){
+      return false;
+    }
+  }
+
+  function withTimeout(promise, ms){
+    let t;
+    return Promise.race([
+      promise.finally(()=>clearTimeout(t)),
+      new Promise(res => { t = setTimeout(()=>res('timeout'), ms); })
+    ]);
+  }
+
   function drawResults(){
     const filtered = filterAll();
     populateSelects(filtered);
@@ -219,22 +253,16 @@
       p.textContent = getField(n,"Titre") || "(Sans titre)";
 
       const url = getNoticeUrl(n);
-
-      p.addEventListener("click", ()=>{
-        // on reconnaît les liens OneDrive / SharePoint / 1drv.ms
-        const isOD = /onedrive\.live\.com|sharepoint\.com|1drv\.ms/i.test(url);
-        // si OneDrive => on passe par la fonction proxy, sinon on ouvre l’URL telle quelle
-        const finalUrl = isOD
-          ? '/.netlify/functions/pdf?src=' + encodeURIComponent(url)
-          : url;
-
-        if (finalUrl) {
-          haShowLoader();
-          setTimeout(()=>{
-            window.open(finalUrl, "_blank", "noopener");
-          }, 300);
-        } else {
+      p.addEventListener("click", async ()=>{
+        if (!url){
           alert("Aucun lien disponible pour cette notice.");
+          return;
+        }
+        haShowLoader('Préparation du document…');
+        const ok = await withTimeout(warmup(url), 2500);
+        window.open(url, "_blank", "noopener");
+        if (ok === false){
+          alert("Le fichier semble indisponible ou non public :\n" + url);
         }
       });
 
@@ -320,10 +348,20 @@
 })();
 </script>
 
-<!-- Overlay loader indéterminé -->
-<div id="ha-loader" style="position:fixed;inset:0;display:none;place-items:center;background:#fff;z-index:9999;">
+<!-- Écran d’attente (masque) -->
+<div id="ha-loader" style="
+  position:fixed;
+  inset:0;
+  display:none;             /* retiré du flux quand invisible */
+  place-items:center;
+  background:#fff;
+  z-index:9999;
+  opacity:0;                /* fondu: part de 0 */
+  transition:opacity .3s ease; /* fondu entrée/sortie 0.3s */
+  pointer-events:none;      /* blocage clics pendant le fondu de sortie */
+">
   <div style="width:min(92vw,420px);font-family:system-ui,Segoe UI,Roboto,Arial;">
-    <p style="margin:0 0 10px 0;text-align:center;font-weight:600">Ouverture de la notice…</p>
+    <p id="ha-msg" style="margin:0 0 10px 0;text-align:center;font-weight:600">Ouverture de la notice…</p>
     <div style="height:10px;border-radius:999px;background:#eee;overflow:hidden;">
       <div id="ha-bar" style="height:100%;width:30%;background:#68a;transform:translateX(-30%);animation:haSlide 1.2s ease-in-out infinite;"></div>
     </div>
