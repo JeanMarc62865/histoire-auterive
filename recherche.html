@@ -132,11 +132,18 @@
     });
   }
 
-  // --- Ouvre le loader hébergé, puis redirection vers le PDF ---
+  // --- Ouvre le loader hébergé dans un NOUVEL onglet via un <a target="_blank"> (ne modifie jamais l'onglet courant) ---
   function openPdfWithLoaderInNewTab(pdfUrl){
-    const u = 'recherche-loader.html?u=' + encodeURIComponent(pdfUrl);
-    const w = window.open(u, '_blank', 'noopener');
-    if (!w) { window.location.href = u; } // si popup bloquée, même onglet
+    const href = 'recherche-loader.html?u=' + encodeURIComponent(pdfUrl);
+    const a = document.createElement('a');
+    a.href = href;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    // nécessaire sur certains navigateurs : le lien doit être dans le DOM
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    // surtout ne rien faire d'autre ici : pas de fallback qui change l'onglet courant
   }
 
   function drawResults(){
