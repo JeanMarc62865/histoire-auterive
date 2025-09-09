@@ -190,8 +190,7 @@
     const txt = document.getElementById('ha-msg');
     if (txt) txt.textContent = msg || 'Ouverture de la notice…';
     if (!el) return;
-    el.style.display = 'grid';     // rend visible dans le flux
-    // force le recalcul puis passe l'opacité à 1 pour le fondu d'entrée (si jamais utile)
+    el.style.display = 'grid';
     requestAnimationFrame(()=>{ el.style.opacity = '1'; el.style.pointerEvents = 'auto'; });
   }
 
@@ -199,39 +198,29 @@
     const el = document.getElementById('ha-loader');
     if (!el) return;
     const elapsed = Date.now() - haLoaderStart;
-    const wait = Math.max(0, HA_MIN_MS - elapsed); // garantit 1 s visible
+    const wait = Math.max(0, HA_MIN_MS - elapsed);
     setTimeout(()=>{
-      // lance le fondu
       el.style.opacity = '0';
       el.style.pointerEvents = 'none';
-      // après le fondu, on retire du flux
       setTimeout(()=>{ el.style.display = 'none'; }, HA_FADE_MS);
     }, wait);
   }
 
-  // Quand on revient sur la page, on cache avec la règle ci-dessus
+  // On cache le loader quand on revient sur l'onglet
   window.addEventListener('focus', haHideLoader);
   document.addEventListener('visibilitychange', ()=>{
     if (document.visibilityState === 'visible') haHideLoader();
   });
 
-  async function warmup(url){
+  // Réveil discret : on n'affiche JAMAIS d'alerte, on tente juste une requête "no-cors"
+  async function warmupSilent(url){
     try {
-      const r = await fetch(url, { method:'HEAD' });
-      if (r.ok) return true;
-      const r2 = await fetch(url, { method:'GET', headers:{ Range:'bytes=0-0' } });
-      return r2.ok;
+      // Beaucoup d'hébergements bloquent HEAD/CORS.
+      // 'no-cors' renvoie une réponse "opaque" mais suffit à chauffer le cache.
+      await fetch(url, { method:'HEAD', mode:'no-cors' });
     } catch(e){
-      return false;
+      // On ignore les erreurs : l'ouverture directe fonctionne de toute façon.
     }
-  }
-
-  function withTimeout(promise, ms){
-    let t;
-    return Promise.race([
-      promise.finally(()=>clearTimeout(t)),
-      new Promise(res => { t = setTimeout(()=>res('timeout'), ms); })
-    ]);
   }
 
   function drawResults(){
@@ -259,11 +248,11 @@
           return;
         }
         haShowLoader('Préparation du document…');
-        const ok = await withTimeout(warmup(url), 2500);
+        // On tente un réveil silencieux (sans bloquer l'ouverture du PDF)
+        warmupSilent(url);
+        // On ouvre immédiatement dans un nouvel onglet
         window.open(url, "_blank", "noopener");
-        if (ok === false){
-          alert("Le fichier semble indisponible ou non public :\n" + url);
-        }
+        // Le loader se fermera automatiquement quand vous reviendrez sur la page
       });
 
       box.appendChild(p);
@@ -352,13 +341,13 @@
 <div id="ha-loader" style="
   position:fixed;
   inset:0;
-  display:none;             /* retiré du flux quand invisible */
+  display:none;
   place-items:center;
   background:#fff;
   z-index:9999;
-  opacity:0;                /* fondu: part de 0 */
-  transition:opacity .3s ease; /* fondu entrée/sortie 0.3s */
-  pointer-events:none;      /* blocage clics pendant le fondu de sortie */
+  opacity:0;
+  transition:opacity .3s ease;
+  pointer-events:none;
 ">
   <div style="width:min(92vw,420px);font-family:system-ui,Segoe UI,Roboto,Arial;">
     <p id="ha-msg" style="margin:0 0 10px 0;text-align:center;font-weight:600">Ouverture de la notice…</p>
