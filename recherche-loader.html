@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Ouverture de la notice…</title>
+  <style>
+    html,body{height:100%;margin:0}
+    body{display:grid;place-items:center;background:#fff;
+         font:16px/1.4 system-ui,Segoe UI,Roboto,Arial;color:#222}
+    .wrap{width:min(92vw,460px);text-align:center}
+    .bar{height:10px;border-radius:999px;background:#eee;overflow:hidden;margin:.75rem 0}
+    .bar > i{display:block;height:100%;width:30%;background:#68a;
+             transform:translateX(-30%);animation:slide 1.2s ease-in-out infinite}
+    @keyframes slide{0%{transform:translateX(-30%)}50%{transform:translateX(100%)}100%{transform:translateX(-30%)}}
+    .small{color:#666;font-size:14px;margin-top:.25rem}
+    .err{color:#b00}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p style="margin:.2rem 0 .4rem 0;font-weight:600">Ouverture de la notice…</p>
+    <div class="bar"><i></i></div>
+    <p class="small">Merci de patienter</p>
+    <p id="err" class="small err" style="display:none"></p>
+  </div>
+
+  <script>
+    // Récupère le paramètre ?u= (URL du PDF)
+    const params = new URLSearchParams(location.search);
+    const target = params.get('u');
+
+    if (target) {
+      // Attente 1 s pour laisser voir le loader, puis redirection
+      setTimeout(()=>{ location.replace(target); }, 1000);
+    } else {
+      document.getElementById('err').textContent =
+        "Lien de document manquant. Fermez cet onglet et réessayez depuis la page de recherche.";
+      document.getElementById('err').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

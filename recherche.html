@@ -16,48 +16,32 @@
   <section class="recherche-section">
     <h2>Recherche de notices</h2>
 
-    <!-- Cadre blanc des 4 cases -->
     <div class="search-form">
       <div class="col-min-220" style="display:flex;flex-direction:column;">
         <label for="categorie">Catégorie</label>
-        <select id="categorie">
-          <option value="">— choisir —</option>
-        </select>
+        <select id="categorie"><option value="">— choisir —</option></select>
       </div>
-
       <div class="col-min-220" style="display:flex;flex-direction:column;">
         <label for="objet">Objet</label>
-        <select id="objet">
-          <option value="">— choisir —</option>
-        </select>
+        <select id="objet"><option value="">— choisir —</option></select>
       </div>
-
       <div class="col-min-220" style="display:flex;flex-direction:column;">
         <label for="auteur">Auteur</label>
-        <select id="auteur">
-          <option value="">— choisir —</option>
-        </select>
+        <select id="auteur"><option value="">— choisir —</option></select>
       </div>
-
       <div class="col-min-260" style="display:flex;flex-direction:column;">
         <label for="mot">Rechercher par mot du titre</label>
         <input type="text" id="mot" placeholder="Saisir un mot clé" />
       </div>
     </div>
 
-    <!-- Ligne RAZ + lien contact -->
     <div class="actions-raz" style="position:relative;">
       <button id="resetBtn" class="btn" type="button">RAZ</button>
       <a href="contact.html" style="position:absolute; right:0; top:50%; transform:translateY(-50%);">Contact / Contribuer</a>
     </div>
 
-    <!-- Compteur -->
     <div id="counter" class="counter">Résultats : 0 notice(s) trouvée(s)</div>
-
-    <!-- Résultats -->
     <div id="results" class="results-box"></div>
-
-    <!-- Diagnostic -->
     <div id="diag"></div>
   </section>
 </main>
@@ -66,14 +50,9 @@
   <p>&copy; 2025 Histoire d'Auterive · <span id="pv-counter">—</span> <span id="pv-badge" title="État du compteur"></span></p>
 </footer>
 
-<!-- JSON embarqué (fallback) -->
-<script id="listing-json" type="application/json">
-[
-]
-</script>
+<script id="listing-json" type="application/json">[]</script>
 
 <script>
-  // ===== Sélecteurs utiles =====
   const selCat  = () => document.getElementById("categorie");
   const selObj  = () => document.getElementById("objet");
   const selAut  = () => document.getElementById("auteur");
@@ -81,7 +60,6 @@
   const resBox  = () => document.getElementById("results");
   const counter = () => document.getElementById("counter");
   const diagEl  = () => document.getElementById("diag");
-
   let notices = [];
 
   async function loadData(){
@@ -91,19 +69,16 @@
         const data = await resp.json();
         if (Array.isArray(data) && data.length) return data;
       }
-    } catch(e) { }
+    } catch(e) {}
     try {
       const raw = document.getElementById("listing-json").textContent;
       const data = JSON.parse(raw);
       return Array.isArray(data) ? data : [];
-    } catch(e) {
-      return [];
-    }
+    } catch(e) { return []; }
   }
 
   const norm = s => (s||"").toString().trim().toLowerCase();
   const sortFr = arr => [...arr].sort((a,b)=>a.localeCompare(b,"fr",{sensitivity:"base"}));
-
   function getField(n, key) {
     if (!n) return "";
     if (n[key] != null) return String(n[key]);
@@ -114,45 +89,31 @@
       "Titre":     ["Titre "],
       "Fichier":   ["Fichier ","Lien","URL"]
     };
-    const alts = map[key] || [];
-    for (const k of alts) if (n[k] != null) return String(n[k]);
+    for (const k of (map[key]||[])) if (n[k] != null) return String(n[k]);
     return "";
   }
-
   function uniqueValuesFor(list, key){
     const set = new Set();
-    for (const n of list){
-      const v = getField(n, key).trim();
-      if (v) set.add(v);
-    }
+    for (const n of list){ const v = getField(n, key).trim(); if (v) set.add(v); }
     return sortFr([...set]);
   }
-
   function fillSelect(sel, values, current=""){
     sel.innerHTML = "";
-    const opt0 = document.createElement("option");
-    opt0.value = "";
-    opt0.textContent = "— choisir —";
-    sel.appendChild(opt0);
-
+    const opt0 = document.createElement("option"); opt0.value = ""; opt0.textContent = "— choisir —"; sel.appendChild(opt0);
     let keep = false;
     for (const v of values){
-      const opt = document.createElement("option");
-      opt.value = v;
-      opt.textContent = v;
+      const opt = document.createElement("option"); opt.value = v; opt.textContent = v;
       if (v === current){ opt.selected = true; keep = true; }
       sel.appendChild(opt);
     }
     if (!keep && current && values.length) sel.value = "";
   }
-
   function populateSelects(universe){
     const c = selCat().value, o = selObj().value, a = selAut().value;
     fillSelect(selCat(), uniqueValuesFor(universe,"Categorie"), c);
     fillSelect(selObj(), uniqueValuesFor(universe,"Objet"),     o);
     fillSelect(selAut(), uniqueValuesFor(universe,"Auteur"),    a);
   }
-
   function getNoticeUrl(n){
     const url = (getField(n,"Fichier") || "").trim();
     if (!url) return "";
@@ -160,96 +121,40 @@
     if (/^[a-zA-Z]:\\/.test(url) || url.startsWith("\\\\")) return "";
     return "Source/" + url.replace(/^Source[\\/]/i,"");
   }
-
   function filterAll(base=notices){
-    const c = selCat().value;
-    const o = selObj().value;
-    const a = selAut().value;
-    const m = norm(inpMot().value);
+    const c = selCat().value, o = selObj().value, a = selAut().value, m = norm(inpMot().value);
     return base.filter(n=>{
       const tC = getField(n,"Categorie").trim();
       const tO = getField(n,"Objet").trim();
       const tA = getField(n,"Auteur").trim();
       const tT = norm(getField(n,"Titre"));
-      const okC = !c || tC === c;
-      const okO = !o || tO === o;
-      const okA = !a || tA === a;
-      const okM = !m || tT.includes(m);
-      return okC && okO && okA && okM;
+      return (!c || tC===c) && (!o || tO===o) && (!a || tA===a) && (!m || tT.includes(m));
     });
   }
 
-  // ==== Ouverture via URL data: (loader 1s dans le nouvel onglet) ====
+  // --- Ouvre le loader hébergé, puis redirection vers le PDF ---
   function openPdfWithLoaderInNewTab(pdfUrl){
-    // Échapper l'URL pour l'injecter dans le HTML (évite les guillemets & co)
-    const target = String(pdfUrl)
-      .replace(/&/g, '&amp;')
-      .replace(/"/g, '&quot;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
-
-    const html = `<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Ouverture du PDF…</title>
-  <meta http-equiv="refresh" content="1;url=${target}">
-  <style>
-    html,body{height:100%;margin:0}
-    body{display:grid;place-items:center;background:#fff;font:16px/1.4 system-ui,Segoe UI,Roboto,Arial;color:#222}
-    .wrap{width:min(92vw,460px);text-align:center}
-    .bar{height:10px;border-radius:999px;background:#eee;overflow:hidden;margin:.75rem 0}
-    .bar > i{display:block;height:100%;width:30%;background:#68a;transform:translateX(-30%);animation:slide 1.2s ease-in-out infinite}
-    @keyframes slide{0%{transform:translateX(-30%)}50%{transform:translateX(100%)}100%{transform:translateX(-30%)}}
-    .small{color:#666;font-size:14px;margin-top:.25rem}
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <p style="margin:.2rem 0 .4rem 0;font-weight:600">Ouverture de la notice…</p>
-    <div class="bar"><i></i></div>
-    <p class="small">Merci de patienter</p>
-  </div>
-</body>
-</html>`;
-
-    // Construire une URL data: et l'ouvrir — pas de about:blank, pas de document.write
-    const dataUrl = 'data:text/html;charset=utf-8,' + encodeURIComponent(html);
-    const w = window.open(dataUrl, '_blank');
-    if (!w) {
-      // Si le navigateur bloque l'onglet, on ouvre dans le même onglet (sans loader)
-      window.location.href = pdfUrl;
-    }
+    const u = 'recherche-loader.html?u=' + encodeURIComponent(pdfUrl);
+    const w = window.open(u, '_blank', 'noopener');
+    if (!w) { window.location.href = u; } // si popup bloquée, même onglet
   }
 
   function drawResults(){
     const filtered = filterAll();
     populateSelects(filtered);
-    const n = filtered.length;
-    counter().textContent = `Résultats : ${n} notice(s) trouvée(s)`;
+    counter().textContent = `Résultats : ${filtered.length} notice(s) trouvée(s)`;
 
-    const box = resBox();
-    box.innerHTML = "";
-
-    if (!filtered.length){
-      box.innerHTML = "<p>Aucune notice trouvée</p>";
-      return;
-    }
+    const box = resBox(); box.innerHTML = "";
+    if (!filtered.length){ box.innerHTML = "<p>Aucune notice trouvée</p>"; return; }
 
     filtered.forEach(n=>{
       const p = document.createElement("p");
       p.textContent = getField(n,"Titre") || "(Sans titre)";
-
       const url = getNoticeUrl(n);
       p.addEventListener("click", ()=>{
-        if (!url){
-          alert("Aucun lien disponible pour cette notice.");
-          return;
-        }
+        if (!url){ alert("Aucun lien disponible pour cette notice."); return; }
         openPdfWithLoaderInNewTab(url);
       });
-
       box.appendChild(p);
     });
   }
@@ -258,28 +163,19 @@
     selCat().addEventListener("mousedown", ()=>{ if (selCat().options.length<=1)  populateSelects(notices); });
     selObj().addEventListener("mousedown", ()=>{ if (selObj().options.length<=1)  populateSelects(notices); });
     selAut().addEventListener("mousedown", ()=>{ if (selAut().options.length<=1)  populateSelects(notices); });
-
     selCat().addEventListener("change", drawResults);
     selObj().addEventListener("change", drawResults);
     selAut().addEventListener("change", drawResults);
     inpMot().addEventListener("input", drawResults);
-
     document.getElementById("resetBtn").addEventListener("click", ()=>{
-      selCat().value = "";
-      selObj().value = "";
-      selAut().value = "";
-      inpMot().value = "";
-      populateSelects(notices);
-      drawResults();
+      selCat().value = ""; selObj().value = ""; selAut().value = ""; inpMot().value = "";
+      populateSelects(notices); drawResults();
     });
   }
 
   (async function init(){
     notices = await loadData();
-    populateSelects(notices);
-    attach();
-    drawResults();
-
+    populateSelects(notices); attach(); drawResults();
     const dC = uniqueValuesFor(notices,"Categorie").length;
     const dO = uniqueValuesFor(notices,"Objet").length;
     const dA = uniqueValuesFor(notices,"Auteur").length;
@@ -293,42 +189,19 @@
   const el = document.getElementById('pv-counter');
   const badge = document.getElementById('pv-badge');
   if(!el || !badge) return;
-
-  const NS   = 'histoire-auterive.netlify.app';
-  const KEY  = 'recherche';
-  const LS   = 'pv-'+KEY;
-
-  function show(val, online){
-    el.textContent = (typeof val === 'number') ? val.toLocaleString('fr-FR') : '—';
-    badge.textContent = online ? '[✓]' : '[~]';
-  }
-  function withTimeout(p, ms){
-    return Promise.race([ p, new Promise((_,rej)=>setTimeout(()=>rej(new Error('timeout')), ms)) ]);
-  }
-  function localFallback(){
-    let v = parseInt(localStorage.getItem(LS)||'0',10);
-    v = isNaN(v) ? 1 : v+1;
-    localStorage.setItem(LS, String(v));
-    show(v, false);
-  }
-
-  const url1 = 'https://api.countapi.xyz/hit/'+encodeURIComponent(NS)+'/'+encodeURIComponent(KEY);
-  withTimeout(fetch(url1, {cache:'no-store'}), 1500)
-    .then(r=>r.json())
-    .then(d=>{
-      if(d && typeof d.value === 'number'){ show(d.value, true); }
-      else throw new Error('no value from countapi');
-    })
-    .catch(()=>{
-      const url2 = 'https://api.counterapi.dev/v1/'+encodeURIComponent(NS)+'/'+encodeURIComponent(KEY)+'/up';
-      return withTimeout(fetch(url2, {cache:'no-store'}), 1500)
-        .then(r=>r.json())
-        .then(d=>{
-          if(d && typeof d.count === 'number'){ show(d.count, true); }
-          else throw new Error('no value from counterapi');
-        })
-        .catch(localFallback);
-    });
+  const NS='histoire-auterive.netlify.app', KEY='recherche', LS='pv-'+KEY;
+  function show(val, online){ el.textContent=(typeof val==='number')?val.toLocaleString('fr-FR'):'—'; badge.textContent=online?'[✓]':'[~]'; }
+  function withTimeout(p, ms){ return Promise.race([ p, new Promise((_,rej)=>setTimeout(()=>rej(new Error('timeout')), ms)) ]); }
+  function localFallback(){ let v=parseInt(localStorage.getItem(LS)||'0',10); v=isNaN(v)?1:v+1; localStorage.setItem(LS,String(v)); show(v,false); }
+  const url1='https://api.countapi.xyz/hit/'+encodeURIComponent(NS)+'/'+encodeURIComponent(KEY);
+  withTimeout(fetch(url1,{cache:'no-store'}),1500).then(r=>r.json()).then(d=>{
+    if(d && typeof d.value==='number'){ show(d.value,true); } else throw new Error('no value'); 
+  }).catch(()=>{
+    const url2='https://api.counterapi.dev/v1/'+encodeURIComponent(NS)+'/'+encodeURIComponent(KEY)+'/up';
+    return withTimeout(fetch(url2,{cache:'no-store'}),1500).then(r=>r.json()).then(d=>{
+      if(d && typeof d.count==='number'){ show(d.count,true); } else throw new Error('no value');
+    }).catch(localFallback);
+  });
 })();
 </script>
 
